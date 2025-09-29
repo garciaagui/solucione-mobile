@@ -2,7 +2,6 @@ import { Image } from 'expo-image'
 import { Link } from 'expo-router'
 import { Platform, StyleSheet } from 'react-native'
 
-import { HelloWave } from '@/components/hello-wave'
 import ParallaxScrollView from '@/components/parallax-scroll-view'
 import { ThemedText } from '@/components/themed-text'
 import { ThemedView } from '@/components/themed-view'
@@ -19,7 +18,6 @@ export default function HomeScreen() {
       }>
       <ThemedView style={styles.titleContainer}>
         <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
       </ThemedView>
       <ThemedView style={styles.stepContainer}>
         <ThemedText type="subtitle">Step 1: Try it</ThemedText>
@@ -66,15 +64,14 @@ export default function HomeScreen() {
         </Link>
 
         <ThemedText>
-          {
-            "Tap the Explore tab to learn more about what's included in this starter app."
-          }
+          Tap the Explore tab to learn more about what&apos;s included in this
+          starter app.
         </ThemedText>
       </ThemedView>
       <ThemedView style={styles.stepContainer}>
         <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
         <ThemedText>
-          {"When you're ready, run "}
+          When you&apos;re ready, run
           <ThemedText type="defaultSemiBold">
             npm run reset-project
           </ThemedText>{' '}

@@ -6,7 +6,7 @@ import Animated, {
   useScrollOffset
 } from 'react-native-reanimated'
 
-import { ThemedView } from '@/components/themed-view'
+import { ThemedView } from '@/components/ui'
 import { useThemeColor } from '@/hooks/use-theme-color'
 
 import type { PropsWithChildren, ReactElement } from 'react'

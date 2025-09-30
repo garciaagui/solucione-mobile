@@ -4,7 +4,7 @@ import { Platform, StyleSheet } from 'react-native'
 
 import ParallaxScrollView from '@/components/parallax-scroll-view'
 import { ThemedText } from '@/components/themed-text'
-import { ThemedView } from '@/components/themed-view'
+import { ThemedView } from '@/components/ui'
 
 export default function HomeScreen() {
   return (

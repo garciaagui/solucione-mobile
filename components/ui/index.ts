@@ -1,3 +1,4 @@
+import Text from '@/components/ui/text'
 import ThemedView from '@/components/ui/themed-view'
 
-export { ThemedView }
+export { Text, ThemedView }

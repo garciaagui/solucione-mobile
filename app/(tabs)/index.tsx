@@ -3,8 +3,7 @@ import { Link } from 'expo-router'
 import { Platform, StyleSheet } from 'react-native'
 
 import ParallaxScrollView from '@/components/parallax-scroll-view'
-import { ThemedText } from '@/components/themed-text'
-import { ThemedView } from '@/components/ui'
+import { Text, ThemedView } from '@/components/ui'
 
 export default function HomeScreen() {
   return (
@@ -17,28 +16,32 @@ export default function HomeScreen() {
         />
       }>
       <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
+        <Text size="3xl" weight="bold">
+          Welcome!
+        </Text>
       </ThemedView>
       <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
+        <Text size="lg">Step 1: Try it</Text>
+        <Text size="md">
           Edit{' '}
-          <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText>{' '}
+          <Text size="md" weight="semibold">
+            app/(tabs)/index.tsx
+          </Text>{' '}
           to see changes. Press{' '}
-          <ThemedText type="defaultSemiBold">
+          <Text size="md" weight="semibold">
             {Platform.select({
               ios: 'cmd + d',
               android: 'cmd + m',
               web: 'F12'
             })}
-          </ThemedText>{' '}
+          </Text>{' '}
           to open developer tools.
-        </ThemedText>
+        </Text>
       </ThemedView>
       <ThemedView style={styles.stepContainer}>
         <Link href="/modal">
           <Link.Trigger>
-            <ThemedText type="subtitle">Step 2: Explore</ThemedText>
+            <Text size="lg">Step 2: Explore</Text>
           </Link.Trigger>
           <Link.Preview />
           <Link.Menu>
@@ -63,23 +66,32 @@ export default function HomeScreen() {
           </Link.Menu>
         </Link>
 
-        <ThemedText>
+        <Text size="md">
           Tap the Explore tab to learn more about what&apos;s included in this
           starter app.
-        </ThemedText>
+        </Text>
       </ThemedView>
       <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          When you&apos;re ready, run
-          <ThemedText type="defaultSemiBold">
+        <Text size="lg">Step 3: Get a fresh start</Text>
+        <Text size="md">
+          When you&apos;re ready, run{' '}
+          <Text size="md" weight="semibold">
             npm run reset-project
-          </ThemedText>{' '}
-          to get a fresh <ThemedText type="defaultSemiBold">app</ThemedText>{' '}
+          </Text>{' '}
+          to get a fresh{' '}
+          <Text size="md" weight="semibold">
+            app
+          </Text>{' '}
           directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
+          <Text size="md" weight="semibold">
+            app
+          </Text>{' '}
+          to{' '}
+          <Text size="md" weight="semibold">
+            app-example
+          </Text>
+          .
+        </Text>
       </ThemedView>
     </ParallaxScrollView>
   )

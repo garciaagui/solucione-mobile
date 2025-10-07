@@ -4,16 +4,28 @@ import { ThemeColors } from '@/types/ui'
 
 export const Colors: { light: ThemeColors; dark: ThemeColors } = {
   light: {
+    primary: '#121212',
+    error: '#D92D20',
     background: '#FFFFFF',
     backgroundAlt: '#F8F9FA',
-    textPrimary: '#212529',
-    textSecondary: '#6C757D'
+    border: '#D0D5DD',
+    borderError: '#F97066',
+    textPrimary: '#101828',
+    textSecondary: '#344054',
+    textTertiary: '#475467',
+    textError: '#D92D20'
   },
   dark: {
+    primary: '#FFFFFF',
+    error: '#D92D20',
     background: '#121212',
     backgroundAlt: '#1E1E1E',
-    textPrimary: '#FFFFFF',
-    textSecondary: '#AAAAAA'
+    border: '#1F242F',
+    borderError: '#F97066',
+    textPrimary: '#F5F5F6',
+    textSecondary: '#CECFD2',
+    textTertiary: '#94969C',
+    textError: '#F97066'
   }
 }
 

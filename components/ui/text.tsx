@@ -8,7 +8,7 @@ interface Props extends TextProps {
   color?: string
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl'
   weight?: 'regular' | 'medium' | 'semibold' | 'bold'
-  variant?: 'primary' | 'secondary'
+  variant?: 'primary' | 'secondary' | 'tertiary' | 'error'
 }
 
 export default function Text({
@@ -91,5 +91,11 @@ const createTextStyles = (theme: ThemeColors) =>
     },
     secondary: {
       color: theme.textSecondary
+    },
+    tertiary: {
+      color: theme.textTertiary
+    },
+    error: {
+      color: theme.textError
     }
   })

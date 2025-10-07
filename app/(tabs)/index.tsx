@@ -21,7 +21,7 @@ export default function HomeScreen() {
         </Text>
 
         <View>
-          <Link href="/sign-in">
+          <Link href="/sign-in" asChild>
             <Text weight="semibold">Sign in</Text>
           </Link>
         </View>

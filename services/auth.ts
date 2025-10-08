@@ -7,3 +7,7 @@ export const login = async (
   const response = await api.post<LoginResponse>('/auth/login', credentials)
   return response.data
 }
+
+export const logout = async (): Promise<void> => {
+  await api.post('/auth/logout')
+}

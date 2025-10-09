@@ -10,7 +10,7 @@ function CustomToast({ type, ...props }: Props) {
   const { colors } = useTheme()
 
   const borderColor = type === 'success' ? colors.success : colors.error
-  const backgroundColor = colors.background
+  const backgroundColor = colors.backgroundAlt
   const text1Color = colors.textPrimary
   const text2Color = colors.textSecondary
 

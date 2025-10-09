@@ -5,6 +5,7 @@ import { ThemeColors } from '@/types/ui'
 export const Colors: { light: ThemeColors; dark: ThemeColors } = {
   light: {
     primary: '#121212',
+    success: '#079455',
     error: '#D92D20',
     background: '#FFFFFF',
     backgroundAlt: '#F8F9FA',
@@ -17,6 +18,7 @@ export const Colors: { light: ThemeColors; dark: ThemeColors } = {
   },
   dark: {
     primary: '#FFFFFF',
+    success: '#47CD89',
     error: '#D92D20',
     background: '#121212',
     backgroundAlt: '#1E1E1E',

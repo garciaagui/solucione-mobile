@@ -27,7 +27,6 @@ function CustomToast({ type, ...props }: Props) {
       }}
       text2Style={{
         fontSize: 12,
-        fontWeight: '600',
         color: text2Color
       }}
     />

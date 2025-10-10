@@ -1,5 +1,5 @@
 import api from '@/services/api'
-import { LoginRequest, LoginResponse } from '@/types/auth'
+import { GetMeResponse, LoginRequest, LoginResponse } from '@/types/auth'
 
 export const login = async (
   credentials: LoginRequest
@@ -10,4 +10,9 @@ export const login = async (
 
 export const logout = async (): Promise<void> => {
   await api.post('/auth/logout')
+}
+
+export const getMe = async (): Promise<GetMeResponse> => {
+  const response = await api.get<GetMeResponse>('/auth/me')
+  return response.data
 }

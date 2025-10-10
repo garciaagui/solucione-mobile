@@ -8,7 +8,7 @@ import React, {
 } from 'react'
 import { useColorScheme } from 'react-native'
 
-import { THEME_STORAGE_KEY } from '@/constants/local-storage-keys'
+import { THEME_STORAGE_KEY } from '@/constants/storage-keys'
 import { Colors } from '@/constants/theme'
 import { ThemeColors, ThemeMode } from '@/types/ui'
 

@@ -5,11 +5,14 @@ import { ScrollView, StyleSheet, View } from 'react-native'
 
 import { EmailIcon, LockIcon } from '@/components/icons'
 import { Button, Input, Text } from '@/components/ui'
+import { useAuth } from '@/contexts/auth-context'
 import { useTheme } from '@/contexts/theme-context'
 import { LoginFormValues, loginSchema } from '@/schemas/auth'
 import { ThemeColors } from '@/types/ui'
 
 export default function SignInScreen() {
+  const { login, isLoggingIn } = useAuth()
+
   const { colors } = useTheme()
   const styles = useMemo(() => createStyles(colors), [colors])
 
@@ -24,11 +27,11 @@ export default function SignInScreen() {
   const {
     control,
     handleSubmit,
-    formState: { errors, isSubmitting }
+    formState: { errors }
   } = form
 
-  const onSubmit = (data: LoginFormValues) => {
-    console.log(data)
+  const onSubmit = (credentials: LoginFormValues) => {
+    login(credentials)
   }
 
   return (
@@ -78,7 +81,11 @@ export default function SignInScreen() {
           )}
         />
 
-        <Button disabled={isSubmitting} onPress={handleSubmit(onSubmit)}>
+        <Button
+          disabled={isLoggingIn}
+          loading={isLoggingIn}
+          onPress={handleSubmit(onSubmit)}
+          style={styles.button}>
           Entrar
         </Button>
       </View>
@@ -88,11 +95,14 @@ export default function SignInScreen() {
 
 const createStyles = (colors: ThemeColors) =>
   StyleSheet.create({
+    button: {
+      marginTop: 16
+    },
     container: {
       backgroundColor: colors.background,
       flex: 1,
       paddingHorizontal: 24,
-      paddingTop: 48
+      paddingTop: 96
     },
     form: {
       flex: 1,

@@ -1,11 +1,26 @@
 import { useMutation } from '@tanstack/react-query'
 import { useRouter } from 'expo-router'
-import React, { createContext, ReactNode, useContext, useState } from 'react'
+import React, {
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useState
+} from 'react'
 
 import { handleMutationError } from '@/functions/error'
-import { removeUserFromStorage, saveUserToStorage } from '@/functions/storage'
-import { showSuccessToast } from '@/functions/toast'
-import { login as loginService, logout as logoutService } from '@/services/auth'
+import {
+  getUserFromStorage,
+  removeUserFromStorage,
+  saveUserToStorage
+} from '@/functions/storage'
+import { showErrorToast, showSuccessToast } from '@/functions/toast'
+import {
+  getMe as getMeService,
+  login as loginService,
+  logout as logoutService
+} from '@/services/auth'
+import { CustomAxiosError } from '@/types/api'
 import { LoginRequest } from '@/types/auth'
 import { User } from '@/types/user'
 
@@ -32,44 +47,50 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const router = useRouter()
   const isAuthenticated = !!user
 
-  // useEffect(() => {
-  //   const loadInitialData = async () => {
-  //     try {
-  //       setIsLoading(true)
+  useEffect(() => {
+    const loadInitialData = async () => {
+      setIsLoading(true)
 
-  //       const [storedUser, storedAccessToken] = await Promise.all([
-  //         getUserFromStorage(),
-  //         getAccessTokenFromStorage()
-  //       ])
+      const storedUser = await getUserFromStorage()
+      setUser(storedUser)
 
-  //       if (storedAccessToken) {
-  //         if (storedUser) {
-  //           setUser(storedUser)
-  //         }
-  //         await getMeMutation.mutateAsync()
-  //       } else {
-  //         setUser(null)
-  //       }
-  //     } catch (error) {
-  //       console.error('Error loading initial data:', error)
-  //       if (user) {
-  //         await handleLogout()
-  //       }
-  //     } finally {
-  //       setIsLoading(false)
-  //     }
-  //   }
+      if (storedUser) await getMe()
 
-  //   // Register the callback to handle refresh token expired
-  //   setExpiredRefreshTokenCallback(handleRefreshTokenExpired)
+      setIsLoading(false)
+    }
 
-  //   loadInitialData()
-  // }, [])
+    loadInitialData()
+  }, [])
 
   const handleLogout = () => {
     setUser(null)
     removeUserFromStorage()
   }
+
+  const { mutateAsync: getMe } = useMutation({
+    mutationFn: () => {
+      const response = getMeService()
+      return response
+    },
+    onSuccess: async ({ user }) => {
+      setUser(user)
+      saveUserToStorage(user)
+    },
+    onError: error => {
+      const axiosError = error as CustomAxiosError
+
+      if (axiosError.response?.status === 401) {
+        showErrorToast('Erro', 'Sessão expirada. Faça login novamente.')
+      } else {
+        handleMutationError(
+          error,
+          'Erro inesperado durante a verificação de autenticação.'
+        )
+      }
+
+      handleLogout()
+    }
+  })
 
   const { mutate: login, isPending: isLoggingIn } = useMutation({
     mutationFn: (credentials: LoginRequest) => {
@@ -77,6 +98,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
       return response
     },
     onSuccess: async ({ user }) => {
+      setUser(user)
       saveUserToStorage(user)
       router.replace('/')
       showSuccessToast('Sucesso!', 'Login realizado com sucesso.')

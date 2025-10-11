@@ -61,6 +61,21 @@ export function LockIcon({ size = 24, color = 'white', className }: IconProps) {
   )
 }
 
+export function LogInIcon({
+  size = 24,
+  color = 'white',
+  className
+}: IconProps) {
+  return (
+    <MaterialIcons
+      name="login"
+      size={size}
+      color={color}
+      className={className}
+    />
+  )
+}
+
 export function UserIcon({ size = 24, color = 'white', className }: IconProps) {
   return (
     <FontAwesome5

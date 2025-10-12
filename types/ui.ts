@@ -12,6 +12,7 @@ export interface ThemeColors {
   textSecondary: string
   textTertiary: string
   textError: string
+  skeleton: string
 }
 
 export interface IconProps {

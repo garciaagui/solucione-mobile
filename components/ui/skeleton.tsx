@@ -53,7 +53,7 @@ export default function Skeleton({
           width,
           height,
           borderRadius,
-          backgroundColor: colors.backgroundAlt
+          backgroundColor: colors.skeleton
         },
         style
       ]}>

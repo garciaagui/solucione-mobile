@@ -16,7 +16,7 @@ export default function HomeHeader() {
     }
 
     if (user) {
-      return <UserContainer username={user.name} />
+      return <UserContainer user={user} />
     }
     return <LoginContainer />
   }

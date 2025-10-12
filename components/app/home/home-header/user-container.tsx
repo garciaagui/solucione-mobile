@@ -4,14 +4,14 @@ import { StyleSheet, TouchableOpacity, View } from 'react-native'
 
 import { Text } from '@/components/ui'
 import { useTheme } from '@/contexts/theme-context'
+import { User } from '@/types/user'
 
 interface Props {
-  username: string
+  user: User
 }
 
-export default function UserContainer({ username }: Props) {
-  // DiceBear url for avatar
-  const avatarUrl = 'https://api.dicebear.com/9.x/thumbs/svg?seed=Avery'
+export default function UserContainer({ user }: Props) {
+  const { name, avatar } = user
   const router = useRouter()
 
   const { colors } = useTheme()
@@ -28,12 +28,12 @@ export default function UserContainer({ username }: Props) {
       activeOpacity={0.7}>
       <View style={[styles.nameContainer, { backgroundColor: backgroundAlt }]}>
         <Text size="sm" weight="medium" variant="primary">
-          {username}
+          {name}
         </Text>
       </View>
 
       <Image
-        source={{ uri: avatarUrl }}
+        source={{ uri: avatar }}
         style={styles.avatar}
         contentFit="cover"
       />

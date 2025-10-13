@@ -3,6 +3,8 @@ export type ThemeMode = 'system' | 'light' | 'dark'
 export interface ThemeColors {
   primary: string
   success: string
+  info: string
+  warning: string
   error: string
   background: string
   backgroundAlt: string

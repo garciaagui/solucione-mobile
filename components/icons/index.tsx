@@ -1,9 +1,20 @@
+import AntDesign from '@expo/vector-icons/AntDesign'
 import Feather from '@expo/vector-icons/Feather'
 import FontAwesome from '@expo/vector-icons/FontAwesome'
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5'
 import MaterialIcons from '@expo/vector-icons/MaterialIcons'
 
 import { IconProps } from '@/types/ui'
+
+export function CheckIcon({
+  size = 24,
+  color = 'white',
+  className
+}: IconProps) {
+  return (
+    <Feather name="check" size={size} color={color} className={className} />
+  )
+}
 
 export function ClipboardIcon({
   size = 24,
@@ -13,6 +24,21 @@ export function ClipboardIcon({
   return (
     <FontAwesome5
       name="clipboard-list"
+      size={size}
+      color={color}
+      className={className}
+    />
+  )
+}
+
+export function ClockCircleIcon({
+  size = 24,
+  color = 'white',
+  className
+}: IconProps) {
+  return (
+    <AntDesign
+      name="clock-circle"
       size={size}
       color={color}
       className={className}
@@ -88,6 +114,16 @@ export function LogInIcon({
       color={color}
       className={className}
     />
+  )
+}
+
+export function LoaderIcon({
+  size = 24,
+  color = 'white',
+  className
+}: IconProps) {
+  return (
+    <Feather name="loader" size={size} color={color} className={className} />
   )
 }
 

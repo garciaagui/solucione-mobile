@@ -1,10 +1,12 @@
 import { Image } from 'expo-image'
+import { ComponentType } from 'react'
 import { StyleSheet, View } from 'react-native'
 
+import { CheckIcon, ClockCircleIcon, LoaderIcon } from '@/components/icons'
 import { Text } from '@/components/ui'
 import { useTheme } from '@/contexts/theme-context'
 import { Status } from '@/types/shared'
-import { ThemeColors } from '@/types/ui'
+import { IconProps, ThemeColors } from '@/types/ui'
 import { User } from '@/types/user'
 
 interface Props {
@@ -12,50 +14,61 @@ interface Props {
   status: Status
 }
 
-interface StatusStyle {
+interface StatusBadgeProps {
   backgroundColor: string
   textColor: string
   borderColor: string
+  icon: ComponentType<IconProps>
 }
 
-function getStatusStyle(status: Status, colors: ThemeColors): StatusStyle {
+function getStatusBadgeProps(
+  status: Status,
+  colors: ThemeColors
+): StatusBadgeProps {
   switch (status) {
     case 'Aberto':
       return {
         backgroundColor: `${colors.primary}15`,
         borderColor: `${colors.primary}40`,
-        textColor: colors.primary
+        textColor: colors.primary,
+        icon: ClockCircleIcon
       }
     case 'Andamento':
       return {
         backgroundColor: `${colors.info}15`,
         borderColor: `${colors.info}40`,
-        textColor: colors.info
+        textColor: colors.info,
+        icon: LoaderIcon
       }
     case 'Finalizado':
       return {
         backgroundColor: `${colors.success}15`,
         borderColor: `${colors.success}40`,
-        textColor: colors.success
+        textColor: colors.success,
+        icon: CheckIcon
       }
     default:
       return {
         backgroundColor: `${colors.textTertiary}15`,
         borderColor: `${colors.textTertiary}40`,
-        textColor: colors.textTertiary
+        textColor: colors.textTertiary,
+        icon: ClockCircleIcon
       }
   }
 }
 
 function StatusBadge({ status }: { status: Status }) {
   const { colors } = useTheme()
-  const { backgroundColor, borderColor, textColor } = getStatusStyle(
-    status,
-    colors
-  )
+  const {
+    backgroundColor,
+    borderColor,
+    textColor,
+    icon: Icon
+  } = getStatusBadgeProps(status, colors)
 
   return (
     <View style={[styles.statusContainer, { backgroundColor, borderColor }]}>
+      <Icon size={12} color={textColor} />
       <Text size="xs" weight="medium" color={textColor}>
         {status}
       </Text>
@@ -102,8 +115,12 @@ const styles = StyleSheet.create({
     borderRadius: 999
   },
   statusContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
     borderRadius: 8,
     borderWidth: 1,
+    flexDirection: 'row',
+    gap: 4,
     paddingHorizontal: 8,
     paddingVertical: 2
   }

@@ -5,6 +5,21 @@ import MaterialIcons from '@expo/vector-icons/MaterialIcons'
 
 import { IconProps } from '@/types/ui'
 
+export function ClipboardIcon({
+  size = 24,
+  color = 'white',
+  className
+}: IconProps) {
+  return (
+    <FontAwesome5
+      name="clipboard-list"
+      size={size}
+      color={color}
+      className={className}
+    />
+  )
+}
+
 export function EmailIcon({
   size = 24,
   color = 'white',

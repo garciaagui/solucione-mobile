@@ -11,7 +11,7 @@ export default function HomeScreen() {
   const styles = useMemo(() => createStyles(colors), [colors])
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: colors.background }}>
+    <SafeAreaView style={styles.safeArea}>
       <ScrollView
         keyboardShouldPersistTaps="handled"
         showsVerticalScrollIndicator={false}
@@ -24,15 +24,13 @@ export default function HomeScreen() {
 
 const createStyles = (colors: ThemeColors) =>
   StyleSheet.create({
+    safeArea: {
+      backgroundColor: colors.background,
+      flex: 1
+    },
     container: {
       backgroundColor: colors.background,
       flex: 1,
-      paddingHorizontal: 24
-    },
-    header: {
-      gap: 16,
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-      alignItems: 'center'
+      paddingHorizontal: 16
     }
   })

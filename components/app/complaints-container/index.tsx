@@ -3,19 +3,29 @@ import { StyleSheet, View } from 'react-native'
 import { Complaint } from '@/types/complaint'
 
 import ComplaintCard from './complaint-card'
+import ComplaintCardSkeleton from './complaint-card-skeleton'
 
 interface Props {
-  complaints: Complaint[]
+  isLoading: boolean
+  complaints?: Complaint[]
 }
 
-export default function ComplaintsContainer({ complaints }: Props) {
-  return (
-    <View style={styles.container}>
-      {complaints.map(complaint => (
-        <ComplaintCard key={complaint.id} complaint={complaint} />
-      ))}
-    </View>
-  )
+export default function ComplaintsContainer({ isLoading, complaints }: Props) {
+  const renderContent = () => {
+    if (isLoading) {
+      return [1, 2, 3, 4].map(item => <ComplaintCardSkeleton key={item} />)
+    }
+
+    if (!complaints) {
+      return null
+    }
+
+    return complaints.map(complaint => (
+      <ComplaintCard key={complaint.id} complaint={complaint} />
+    ))
+  }
+
+  return <View style={styles.container}>{renderContent()}</View>
 }
 
 const styles = StyleSheet.create({

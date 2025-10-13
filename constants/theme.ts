@@ -14,7 +14,8 @@ export const Colors: { light: ThemeColors; dark: ThemeColors } = {
     textPrimary: '#101828',
     textSecondary: '#344054',
     textTertiary: '#475467',
-    textError: '#D92D20'
+    textError: '#D92D20',
+    skeleton: '#F0F2F5'
   },
   dark: {
     primary: '#FFFFFF',
@@ -27,7 +28,8 @@ export const Colors: { light: ThemeColors; dark: ThemeColors } = {
     textPrimary: '#F5F5F6',
     textSecondary: '#CECFD2',
     textTertiary: '#94969C',
-    textError: '#F97066'
+    textError: '#F97066',
+    skeleton: '#1E1E1E'
   }
 }
 

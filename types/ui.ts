@@ -12,10 +12,11 @@ export interface ThemeColors {
   textSecondary: string
   textTertiary: string
   textError: string
+  skeleton: string
 }
 
 export interface IconProps {
-  color: string
-  size: number
+  color?: string
+  size?: number
   className?: string
 }

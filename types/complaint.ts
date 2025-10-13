@@ -4,8 +4,8 @@ import { User } from './user'
 
 export interface Complaint {
   id: string
-  createdAt: Date
-  updatedAt: Date
+  createdAt: string
+  updatedAt: string
   description: string
   images: string[]
   userId: string

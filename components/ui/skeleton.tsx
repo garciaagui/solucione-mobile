@@ -10,8 +10,8 @@ import Animated, {
 import { useTheme } from '@/contexts/theme-context'
 
 interface SkeletonProps {
-  width: number
-  height: number
+  width: number | string
+  height: number | string
   children?: ReactNode
   rounded?: boolean
   style?: object

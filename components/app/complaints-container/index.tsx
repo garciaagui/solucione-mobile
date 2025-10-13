@@ -4,6 +4,7 @@ import { Complaint } from '@/types/complaint'
 
 import ComplaintCard from './complaint-card'
 import ComplaintCardSkeleton from './complaint-card-skeleton'
+import ComplaintsEmptyState from './complaints-empty-state'
 
 interface Props {
   isLoading: boolean
@@ -16,8 +17,8 @@ export default function ComplaintsContainer({ isLoading, complaints }: Props) {
       return [1, 2, 3, 4].map(item => <ComplaintCardSkeleton key={item} />)
     }
 
-    if (!complaints) {
-      return null
+    if (!complaints || complaints.length === 0) {
+      return <ComplaintsEmptyState />
     }
 
     return complaints.map(complaint => (

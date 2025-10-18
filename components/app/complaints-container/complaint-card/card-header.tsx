@@ -1,9 +1,8 @@
-import { Image } from 'expo-image'
 import { ComponentType } from 'react'
 import { StyleSheet, View } from 'react-native'
 
 import { CheckIcon, ClockCircleIcon, LoaderIcon } from '@/components/icons'
-import { Text } from '@/components/ui'
+import { Text, UserAvatar } from '@/components/ui'
 import { useTheme } from '@/contexts/theme-context'
 import { Status } from '@/types/shared'
 import { IconProps, ThemeColors } from '@/types/ui'
@@ -82,11 +81,7 @@ export default function CardHeader({ user, status }: Props) {
   return (
     <View style={styles.container}>
       <View style={styles.userContainer}>
-        <Image
-          source={{ uri: avatar }}
-          style={styles.avatar}
-          contentFit="contain"
-        />
+        <UserAvatar avatarUrl={avatar} size={28} />
         <Text size="sm" weight="semibold" variant="primary">
           {name}
         </Text>
@@ -108,11 +103,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     gap: 8,
     justifyContent: 'flex-start'
-  },
-  avatar: {
-    width: 28,
-    height: 28,
-    borderRadius: 999
   },
   statusContainer: {
     alignItems: 'center',

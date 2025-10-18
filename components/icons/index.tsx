@@ -6,6 +6,21 @@ import MaterialIcons from '@expo/vector-icons/MaterialIcons'
 
 import { IconProps } from '@/types/ui'
 
+export function AdminIcon({
+  size = 24,
+  color = 'white',
+  className
+}: IconProps) {
+  return (
+    <FontAwesome5
+      name="user-cog"
+      size={size}
+      color={color}
+      className={className}
+    />
+  )
+}
+
 export function CheckIcon({
   size = 24,
   color = 'white',

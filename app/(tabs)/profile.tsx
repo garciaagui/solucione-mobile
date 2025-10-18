@@ -1,5 +1,6 @@
 import { useMemo } from 'react'
 import { ScrollView, StyleSheet } from 'react-native'
+import { SafeAreaView } from 'react-native-safe-area-context'
 
 import { Text } from '@/components/ui'
 import { useTheme } from '@/contexts/theme-context'
@@ -10,23 +11,28 @@ export default function ProfileScreen() {
   const styles = useMemo(() => createStyles(colors), [colors])
 
   return (
-    <ScrollView
-      keyboardShouldPersistTaps="handled"
-      showsVerticalScrollIndicator={false}
-      style={styles.container}>
-      <Text size="xl" weight="semibold" variant="primary">
-        Meu perfil
-      </Text>
-    </ScrollView>
+    <SafeAreaView style={styles.safeArea}>
+      <ScrollView
+        keyboardShouldPersistTaps="handled"
+        showsVerticalScrollIndicator={false}
+        style={styles.container}>
+        <Text size="2xl" weight="bold" variant="primary">
+          Meu perfil
+        </Text>
+      </ScrollView>
+    </SafeAreaView>
   )
 }
 
 const createStyles = (colors: ThemeColors) =>
   StyleSheet.create({
+    safeArea: {
+      backgroundColor: colors.background,
+      flex: 1
+    },
     container: {
       backgroundColor: colors.background,
       flex: 1,
-      paddingHorizontal: 24,
-      paddingTop: 96
+      paddingHorizontal: 16
     }
   })

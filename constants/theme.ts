@@ -22,7 +22,7 @@ export const Colors: { light: ThemeColors; dark: ThemeColors } = {
   dark: {
     primary: '#FFFFFF',
     success: '#47CD89',
-    info: '#007AFF',
+    info: '#2883DF',
     warning: '#F79009',
     error: '#D92D20',
     background: '#121212',

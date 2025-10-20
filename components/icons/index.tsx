@@ -132,6 +132,21 @@ export function LogInIcon({
   )
 }
 
+export function LogOutIcon({
+  size = 24,
+  color = 'white',
+  className
+}: IconProps) {
+  return (
+    <MaterialIcons
+      name="logout"
+      size={size}
+      color={color}
+      className={className}
+    />
+  )
+}
+
 export function LoaderIcon({
   size = 24,
   color = 'white',
@@ -146,6 +161,21 @@ export function UserIcon({ size = 24, color = 'white', className }: IconProps) {
   return (
     <FontAwesome5
       name="user-alt"
+      size={size}
+      color={color}
+      className={className}
+    />
+  )
+}
+
+export function UserUnauthenticatedIcon({
+  size = 24,
+  color = 'white',
+  className
+}: IconProps) {
+  return (
+    <FontAwesome5
+      name="user-times"
       size={size}
       color={color}
       className={className}

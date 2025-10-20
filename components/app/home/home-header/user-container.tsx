@@ -1,8 +1,7 @@
-import { Image } from 'expo-image'
 import { useRouter } from 'expo-router'
 import { StyleSheet, TouchableOpacity, View } from 'react-native'
 
-import { Text } from '@/components/ui'
+import { Text, UserAvatar } from '@/components/ui'
 import { useTheme } from '@/contexts/theme-context'
 import { User } from '@/types/user'
 
@@ -32,11 +31,7 @@ export default function UserContainer({ user }: Props) {
         </Text>
       </View>
 
-      <Image
-        source={{ uri: avatar }}
-        style={styles.avatar}
-        contentFit="cover"
-      />
+      <UserAvatar avatarUrl={avatar} size={36} />
     </TouchableOpacity>
   )
 }
@@ -46,11 +41,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     gap: 8
-  },
-  avatar: {
-    borderRadius: 999,
-    width: 36,
-    height: 36
   },
   nameContainer: {
     borderTopLeftRadius: 999,

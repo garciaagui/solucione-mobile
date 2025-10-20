@@ -65,6 +65,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const handleLogout = () => {
     setUser(null)
     removeUserFromStorage()
+    router.replace('/')
   }
 
   const { mutateAsync: getMe } = useMutation({

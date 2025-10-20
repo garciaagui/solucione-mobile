@@ -2,7 +2,7 @@ import { useRouter } from 'expo-router'
 import { ElementType, useMemo } from 'react'
 import { StyleSheet, TouchableOpacity, View } from 'react-native'
 
-import { LibraryIcon, LogInIcon } from '@/components/icons'
+import { LibraryIcon, LogOutIcon } from '@/components/icons'
 import { Text } from '@/components/ui'
 import { useAuth } from '@/contexts/auth-context'
 import { useTheme } from '@/contexts/theme-context'
@@ -60,7 +60,7 @@ export default function ActionsContainer() {
         />
 
         <ActionItem
-          icon={LogInIcon}
+          icon={LogOutIcon}
           label="Sair da conta"
           onPress={handleLogout}
           isLast

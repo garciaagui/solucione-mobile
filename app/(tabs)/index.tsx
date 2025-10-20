@@ -3,7 +3,7 @@ import { ScrollView, StyleSheet } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
 import ComplaintsContainer from '@/components/app/complaints-container'
-import { HomeHeader } from '@/components/app/home'
+import { HomeHeader } from '@/components/app/screens/home'
 import RefreshControl from '@/components/refresh-control'
 import { useTheme } from '@/contexts/theme-context'
 import { useComplaints } from '@/hooks/use-complaints'

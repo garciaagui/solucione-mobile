@@ -111,6 +111,21 @@ export function LibraryIcon({
   )
 }
 
+export function LibraryAddIcon({
+  size = 24,
+  color = 'white',
+  className
+}: IconProps) {
+  return (
+    <MaterialIcons
+      name="library-add"
+      size={size}
+      color={color}
+      className={className}
+    />
+  )
+}
+
 export function LockIcon({ size = 24, color = 'white', className }: IconProps) {
   return (
     <FontAwesome name="lock" size={size} color={color} className={className} />

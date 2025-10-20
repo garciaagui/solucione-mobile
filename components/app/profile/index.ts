@@ -1,4 +1,5 @@
+import ActionsContainer from './actions-container'
 import AvatarContainer from './avatar-container'
 import InfoContainer from './info-container'
 
-export { AvatarContainer, InfoContainer }
+export { ActionsContainer, AvatarContainer, InfoContainer }

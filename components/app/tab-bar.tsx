@@ -6,7 +6,7 @@ import { HomeIcon, LibraryIcon, UserIcon } from '@/components/icons'
 import { useTheme } from '@/contexts/theme-context'
 import { IconProps, ThemeColors } from '@/types/ui'
 
-import { Text } from './ui'
+import { Text } from '../ui'
 
 interface TabBarProps {
   state: {

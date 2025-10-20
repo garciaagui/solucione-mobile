@@ -157,6 +157,10 @@ export function LoaderIcon({
   )
 }
 
+export function PlusIcon({ size = 24, color = 'white', className }: IconProps) {
+  return <Feather name="plus" size={size} color={color} className={className} />
+}
+
 export function UserIcon({ size = 24, color = 'white', className }: IconProps) {
   return (
     <FontAwesome5
@@ -181,4 +185,8 @@ export function UserUnauthenticatedIcon({
       className={className}
     />
   )
+}
+
+export function XIcon({ size = 24, color = 'white', className }: IconProps) {
+  return <Feather name="x" size={size} color={color} className={className} />
 }

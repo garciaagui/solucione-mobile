@@ -6,7 +6,7 @@ import {
   ActionsContainer,
   AvatarContainer,
   InfoContainer
-} from '@/components/app/profile'
+} from '@/components/app/screens/profile'
 import UnauthenticatedContainer from '@/components/app/unauthenticated-container'
 import { useAuth } from '@/contexts/auth-context'
 import { useTheme } from '@/contexts/theme-context'

@@ -4,7 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 
 import { HomeHeader } from '@/components/app/_screens/home'
 import ComplaintsContainer from '@/components/app/complaints-container'
-import RefreshControl from '@/components/refresh-control'
+import { RefreshControl } from '@/components/ui'
 import { useTheme } from '@/contexts/theme-context'
 import { useComplaints } from '@/hooks/use-complaints'
 import { ThemeColors } from '@/types/ui'

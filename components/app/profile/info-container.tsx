@@ -72,7 +72,7 @@ const createItemStyles = (colors: ThemeColors) =>
 const createContainerStyles = (colors: ThemeColors) =>
   StyleSheet.create({
     container: {
-      gap: 16
+      gap: 8
     },
     content: {
       gap: 8,

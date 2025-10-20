@@ -28,6 +28,13 @@ export default function RootLayout() {
             }}>
             <Stack.Screen name="(auth)" />
             <Stack.Screen name="(tabs)" />
+            <Stack.Screen
+              name="new-complaint"
+              options={{
+                presentation: 'modal',
+                animation: 'slide_from_bottom'
+              }}
+            />
           </Stack>
           <StatusBar style="auto" />
           <Toast

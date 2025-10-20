@@ -41,8 +41,8 @@ const createStyles = (colors: ThemeColors) =>
   StyleSheet.create({
     container: {
       alignItems: 'center',
-      marginBottom: 24,
-      gap: 2
+      gap: 2,
+      marginBottom: 6
     },
     name: {
       marginTop: 4

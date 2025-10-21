@@ -14,7 +14,7 @@ interface ButtonProps extends TouchableOpacityProps {
   onPress: () => void
   loading?: boolean
   size?: 'large' | 'default' | 'small'
-  variant?: 'primary' | 'danger'
+  variant?: 'primary' | 'danger' | 'outline'
 }
 
 export default function Button({
@@ -99,6 +99,10 @@ const createStyles = (colors: ThemeColors) =>
       backgroundColor: colors.error,
       borderColor: colors.error
     },
+    outline: {
+      backgroundColor: 'transparent',
+      borderColor: colors.border
+    },
 
     // Size text styles
     largeText: {
@@ -120,5 +124,8 @@ const createStyles = (colors: ThemeColors) =>
     },
     dangerText: {
       color: '#FFF'
+    },
+    outlineText: {
+      color: colors.primary
     }
   })

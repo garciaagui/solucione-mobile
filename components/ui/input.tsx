@@ -17,12 +17,22 @@ interface Props extends TextInputProps {
   variant: 'text' | 'password'
   errorMessage?: string
   icon?: ComponentType<IconProps>
+  label?: string
+  required?: boolean
 }
 
 export const Input = forwardRef<TextInput, Props>((props, ref) => {
   const [showPassword, setShowPassword] = useState(false)
 
-  const { variant, errorMessage, icon: Icon, editable = true, ...rest } = props
+  const {
+    variant,
+    errorMessage,
+    icon: Icon,
+    editable = true,
+    label,
+    required = false,
+    ...rest
+  } = props
   const { colors } = useTheme()
 
   const styles = useMemo(() => createStyles(colors), [colors])
@@ -34,6 +44,20 @@ export const Input = forwardRef<TextInput, Props>((props, ref) => {
 
   return (
     <View style={[styles.container, isDisabled && { opacity: 0.7 }]}>
+      {label ? (
+        <View style={styles.labelContainer}>
+          <Text size="md" weight="semibold" variant="secondary">
+            {label}
+          </Text>
+          {required ? (
+            <Text size="sm" variant="error">
+              {' '}
+              *
+            </Text>
+          ) : null}
+        </View>
+      ) : null}
+
       <View style={[styles.inputContainer, { borderColor }]}>
         <View style={styles.inputContent}>
           {Icon ? (
@@ -80,11 +104,12 @@ Input.displayName = 'Input'
 const createStyles = (theme: ThemeColors) =>
   StyleSheet.create({
     container: {
-      gap: 8,
+      gap: 6,
       width: '100%'
     },
     errorMessage: {
-      marginLeft: 3
+      marginLeft: 4,
+      marginTop: 2
     },
     input: {
       paddingVertical: 0,
@@ -107,5 +132,9 @@ const createStyles = (theme: ThemeColors) =>
       flex: 1,
       flexDirection: 'row',
       gap: 8
+    },
+    labelContainer: {
+      flexDirection: 'row',
+      alignItems: 'center'
     }
   })

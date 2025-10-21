@@ -6,13 +6,13 @@ import {
   KeyboardAvoidingView,
   Platform,
   ScrollView,
-  StyleSheet,
-  TouchableOpacity,
-  View
+  StyleSheet
 } from 'react-native'
 
-import { FirstFormStep } from '@/components/app/_screens/new-complaint'
-import { XIcon } from '@/components/icons'
+import {
+  FirstFormStep,
+  NewComplaintHeader
+} from '@/components/app/_screens/new-complaint'
 import { Text } from '@/components/ui'
 import { StepProvider, useStep } from '@/contexts/step-context'
 import { useTheme } from '@/contexts/theme-context'
@@ -64,14 +64,7 @@ function ModalContent() {
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       style={styles.container}>
-      <View style={styles.header}>
-        <Text size="lg" weight="semibold" variant="primary">
-          Nova Reclamação
-        </Text>
-        <TouchableOpacity onPress={handleClose} style={styles.closeButton}>
-          <XIcon color={colors.textPrimary} size={24} />
-        </TouchableOpacity>
-      </View>
+      <NewComplaintHeader handleClose={handleClose} />
 
       <ScrollView
         keyboardShouldPersistTaps="handled"
@@ -105,12 +98,6 @@ const createStyles = (colors: ThemeColors) =>
       flex: 1,
       paddingHorizontal: 24,
       paddingTop: 24
-    },
-    header: {
-      alignItems: 'center',
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-      marginBottom: 24
     },
     scrollView: {
       flex: 1,

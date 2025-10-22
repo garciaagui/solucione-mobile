@@ -46,7 +46,7 @@ export const Input = forwardRef<TextInput, Props>((props, ref) => {
     <View style={[styles.container, isDisabled && { opacity: 0.7 }]}>
       {label ? (
         <View style={styles.labelContainer}>
-          <Text size="md" weight="semibold" variant="secondary">
+          <Text size="sm" weight="semibold" variant="secondary">
             {label}
           </Text>
           {required ? (

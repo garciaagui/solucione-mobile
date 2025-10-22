@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-const firstStep = z.object({
+export const newComplaintSchema = z.object({
   title: z
     .string({
       required_error: 'O título é obrigatório'
@@ -20,10 +20,7 @@ const firstStep = z.object({
     })
     .max(255, {
       message: 'A descrição pode ter no máximo 255 caracteres'
-    })
-})
-
-const secondStep = z.object({
+    }),
   neighborhood: z
     .string({
       required_error: 'O bairro é obrigatório'
@@ -46,19 +43,10 @@ const secondStep = z.object({
     .min(1, {
       message: 'Insira a rua'
     }),
-  reference: z.string().optional()
-})
-
-const thirdStep = z.object({
+  reference: z.string().optional(),
   image: z.custom<File>(file => file instanceof File, {
     message: 'A imagem é obrigatória'
   })
-})
-
-export const newComplaintSchema = z.object({
-  firstStep,
-  secondStep,
-  thirdStep
 })
 
 export type NewComplaintFormValues = z.infer<typeof newComplaintSchema>

@@ -148,6 +148,7 @@ export default function NewComplaintModal() {
           render={({ field: { onChange, value } }) => (
             <ImagePicker
               label="Imagem"
+              description="Adicione uma foto que ilustre o problema relatado"
               errorMessage={errors.image?.message}
               value={value}
               onChange={onChange}

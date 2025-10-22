@@ -16,6 +16,7 @@ import { ThemeColors } from '@/types/ui'
 
 interface ImagePickerProps {
   label?: string
+  description?: string
   errorMessage?: string
   required?: boolean
   value?: string
@@ -24,6 +25,7 @@ interface ImagePickerProps {
 
 export const ImagePicker = ({
   label,
+  description,
   errorMessage,
   required = false,
   value,
@@ -144,6 +146,12 @@ export const ImagePicker = ({
         </View>
       ) : null}
 
+      {description ? (
+        <Text size="xs" variant="secondary" style={styles.description}>
+          {description}
+        </Text>
+      ) : null}
+
       {value ? (
         <View style={[styles.imageContainer, { borderColor }]}>
           <Image source={{ uri: value }} style={styles.image} />
@@ -209,6 +217,9 @@ const createStyles = (colors: ThemeColors) =>
     labelContainer: {
       flexDirection: 'row',
       alignItems: 'center'
+    },
+    description: {
+      marginTop: -6
     },
     pickerContainer: {
       borderRadius: 12,

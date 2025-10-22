@@ -42,8 +42,8 @@ export default function InfoContainer({ user }: InfoContainerProps) {
 
   return (
     <View style={styles.container}>
-      <Text size="xl" weight="bold" variant="primary">
-        Meu Perfil
+      <Text size="lg" weight="bold" variant="primary">
+        Meu perfil
       </Text>
 
       <View style={styles.content}>

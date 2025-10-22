@@ -54,7 +54,7 @@ export default function ActionsContainer() {
 
   return (
     <View style={styles.container}>
-      <Text size="xl" weight="bold" variant="primary">
+      <Text size="lg" weight="bold" variant="primary">
         Ações
       </Text>
 

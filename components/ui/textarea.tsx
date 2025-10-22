@@ -1,46 +1,44 @@
-import { ComponentType, forwardRef, useMemo, useState } from 'react'
-import {
-  StyleSheet,
-  TextInput,
-  TextInputProps,
-  TouchableOpacity,
-  View
-} from 'react-native'
+import { ComponentType, forwardRef, useMemo } from 'react'
+import { StyleSheet, TextInput, TextInputProps, View } from 'react-native'
 
 import Text from '@/components/ui/text'
 import { useTheme } from '@/contexts/theme-context'
 import { IconProps, ThemeColors } from '@/types/ui'
 
-import { EyeIcon, EyeOffIcon } from '../icons'
-
-interface Props extends TextInputProps {
-  variant: 'text' | 'password'
+interface Props extends Omit<TextInputProps, 'multiline'> {
   errorMessage?: string
   icon?: ComponentType<IconProps>
   label?: string
   required?: boolean
+  minHeight?: number
+  maxLength?: number
+  showCharCount?: boolean
 }
 
-export const Input = forwardRef<TextInput, Props>((props, ref) => {
-  const [showPassword, setShowPassword] = useState(false)
-
+export const Textarea = forwardRef<TextInput, Props>((props, ref) => {
   const {
-    variant,
     errorMessage,
     icon: Icon,
     editable = true,
     label,
     required = false,
+    minHeight = 100,
+    maxLength,
+    showCharCount = false,
+    value,
     ...rest
   } = props
   const { colors } = useTheme()
 
-  const styles = useMemo(() => createStyles(colors), [colors])
+  const styles = useMemo(
+    () => createStyles(colors, minHeight),
+    [colors, minHeight]
+  )
   const borderColor = errorMessage ? colors.borderError : colors.border
 
-  const secureTextEntry = variant === 'password'
   const onError = !!errorMessage
   const isDisabled = !editable
+  const currentLength = typeof value === 'string' ? value.length : 0
 
   return (
     <View style={[styles.container, isDisabled && { opacity: 0.7 }]}>
@@ -58,35 +56,37 @@ export const Input = forwardRef<TextInput, Props>((props, ref) => {
         </View>
       ) : null}
 
-      <View style={[styles.inputContainer, { borderColor }]}>
-        <View style={styles.inputContent}>
+      <View style={[styles.textareaContainer, { borderColor }]}>
+        <View style={styles.textareaContent}>
           {Icon ? (
-            <Icon
-              size={16}
-              color={onError ? colors.textError : colors.textPrimary}
-            />
+            <View style={styles.iconContainer}>
+              <Icon
+                size={16}
+                color={onError ? colors.textError : colors.textPrimary}
+              />
+            </View>
           ) : null}
 
           <TextInput
             ref={ref}
             editable={editable}
+            multiline={true}
             placeholderTextColor={colors.textTertiary}
-            secureTextEntry={secureTextEntry && !showPassword}
-            style={styles.input}
+            style={styles.textarea}
+            maxLength={maxLength}
+            value={value}
             {...rest}
           />
         </View>
 
-        {secureTextEntry ? (
-          <TouchableOpacity
-            disabled={isDisabled}
-            onPress={() => setShowPassword(!showPassword)}>
-            {showPassword ? (
-              <EyeIcon color={colors.textTertiary} size={16} />
-            ) : (
-              <EyeOffIcon color={colors.textTertiary} size={16} />
-            )}
-          </TouchableOpacity>
+        {showCharCount && maxLength ? (
+          <View style={styles.charCountContainer}>
+            <Text
+              size="xs"
+              variant={currentLength > maxLength ? 'error' : 'tertiary'}>
+              {currentLength} / {maxLength}
+            </Text>
+          </View>
         ) : null}
       </View>
 
@@ -99,9 +99,9 @@ export const Input = forwardRef<TextInput, Props>((props, ref) => {
   )
 })
 
-Input.displayName = 'Input'
+Textarea.displayName = 'Textarea'
 
-const createStyles = (theme: ThemeColors) =>
+const createStyles = (theme: ThemeColors, minHeight: number) =>
   StyleSheet.create({
     container: {
       gap: 6,
@@ -111,30 +111,35 @@ const createStyles = (theme: ThemeColors) =>
       marginLeft: 4,
       marginTop: 2
     },
-    input: {
+    textarea: {
       paddingVertical: 0,
       flex: 1,
       color: theme.textPrimary,
-      fontSize: 16
+      fontSize: 16,
+      textAlignVertical: 'top',
+      minHeight
     },
-    inputContainer: {
-      alignItems: 'center',
+    textareaContainer: {
       borderRadius: 12,
       borderWidth: 1,
+      paddingHorizontal: 14,
+      paddingVertical: 12
+    },
+    textareaContent: {
       flexDirection: 'row',
       gap: 8,
-      justifyContent: 'space-between',
-      paddingHorizontal: 14,
-      paddingVertical: 10
+      alignItems: 'flex-start'
     },
-    inputContent: {
-      alignItems: 'center',
-      flex: 1,
-      flexDirection: 'row',
-      gap: 8
+    iconContainer: {
+      paddingTop: 2
     },
     labelContainer: {
       flexDirection: 'row',
       alignItems: 'center'
+    },
+    charCountContainer: {
+      alignItems: 'flex-end',
+      marginTop: 4,
+      marginRight: 4
     }
   })

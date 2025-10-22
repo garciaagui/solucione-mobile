@@ -21,6 +21,16 @@ export function AdminIcon({
   )
 }
 
+export function CameraIcon({
+  size = 24,
+  color = 'white',
+  className
+}: IconProps) {
+  return (
+    <Feather name="camera" size={size} color={color} className={className} />
+  )
+}
+
 export function CheckIcon({
   size = 24,
   color = 'white',
@@ -96,6 +106,16 @@ export function HomeIcon({ size = 24, color = 'white', className }: IconProps) {
   )
 }
 
+export function ImageIcon({
+  size = 24,
+  color = 'white',
+  className
+}: IconProps) {
+  return (
+    <Feather name="image" size={size} color={color} className={className} />
+  )
+}
+
 export function LibraryIcon({
   size = 24,
   color = 'white',
@@ -104,6 +124,21 @@ export function LibraryIcon({
   return (
     <MaterialIcons
       name="library-books"
+      size={size}
+      color={color}
+      className={className}
+    />
+  )
+}
+
+export function LibraryAddIcon({
+  size = 24,
+  color = 'white',
+  className
+}: IconProps) {
+  return (
+    <MaterialIcons
+      name="library-add"
       size={size}
       color={color}
       className={className}
@@ -157,6 +192,20 @@ export function LoaderIcon({
   )
 }
 
+export function PlusIcon({ size = 24, color = 'white', className }: IconProps) {
+  return <Feather name="plus" size={size} color={color} className={className} />
+}
+
+export function TrashIcon({
+  size = 24,
+  color = 'white',
+  className
+}: IconProps) {
+  return (
+    <Feather name="trash-2" size={size} color={color} className={className} />
+  )
+}
+
 export function UserIcon({ size = 24, color = 'white', className }: IconProps) {
   return (
     <FontAwesome5
@@ -181,4 +230,8 @@ export function UserUnauthenticatedIcon({
       className={className}
     />
   )
+}
+
+export function XIcon({ size = 24, color = 'white', className }: IconProps) {
+  return <Feather name="x" size={size} color={color} className={className} />
 }

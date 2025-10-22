@@ -2,7 +2,7 @@ import { useRouter } from 'expo-router'
 import { ElementType, useMemo } from 'react'
 import { StyleSheet, TouchableOpacity, View } from 'react-native'
 
-import { LibraryIcon, LogOutIcon } from '@/components/icons'
+import { LibraryAddIcon, LibraryIcon, LogOutIcon } from '@/components/icons'
 import { Text } from '@/components/ui'
 import { useAuth } from '@/contexts/auth-context'
 import { useTheme } from '@/contexts/theme-context'
@@ -32,8 +32,10 @@ function ActionItem({ icon: Icon, label, isLast, onPress }: ActionItemProps) {
 }
 
 export default function ActionsContainer() {
-  const { logout } = useAuth()
+  const { user, logout } = useAuth()
   const router = useRouter()
+
+  const isAdmin = user?.role === 'admin'
 
   const { colors } = useTheme()
   const styles = useMemo(() => createContainerStyles(colors), [colors])
@@ -44,6 +46,10 @@ export default function ActionsContainer() {
 
   const handleNavigateToComplaints = () => {
     router.push('/complaints')
+  }
+
+  const handleNavigateToNewComplaint = () => {
+    router.push('/new-complaint')
   }
 
   return (
@@ -58,6 +64,14 @@ export default function ActionsContainer() {
           label="Minhas reclamações"
           onPress={handleNavigateToComplaints}
         />
+
+        {!isAdmin && (
+          <ActionItem
+            icon={LibraryAddIcon}
+            label="Nova reclamação"
+            onPress={handleNavigateToNewComplaint}
+          />
+        )}
 
         <ActionItem
           icon={LogOutIcon}

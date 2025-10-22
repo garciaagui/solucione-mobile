@@ -4,6 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 
 import { HomeHeader } from '@/components/app/_screens/home'
 import ComplaintsContainer from '@/components/app/complaints-container'
+import NewComplaintButton from '@/components/app/new-complaint-button'
 import { RefreshControl } from '@/components/ui'
 import { useTheme } from '@/contexts/theme-context'
 import { useComplaints } from '@/hooks/use-complaints'
@@ -27,6 +28,8 @@ export default function HomeScreen() {
         <HomeHeader />
         <ComplaintsContainer isLoading={isLoading} complaints={data} />
       </ScrollView>
+
+      <NewComplaintButton />
     </SafeAreaView>
   )
 }

@@ -5,7 +5,8 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import {
   ActionsContainer,
   AvatarContainer,
-  InfoContainer
+  InfoContainer,
+  ThemeSwitcher
 } from '@/components/app/_screens/profile'
 import UnauthenticatedContainer from '@/components/app/unauthenticated-container'
 import { useAuth } from '@/contexts/auth-context'
@@ -27,6 +28,7 @@ export default function ProfileScreen() {
       <>
         <AvatarContainer user={user} />
         <InfoContainer user={user} />
+        <ThemeSwitcher />
         <ActionsContainer />
       </>
     )

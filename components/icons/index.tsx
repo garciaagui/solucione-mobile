@@ -71,6 +71,12 @@ export function ClockCircleIcon({
   )
 }
 
+export function CogIcon({ size = 24, color = 'white', className }: IconProps) {
+  return (
+    <FontAwesome name="cog" size={size} color={color} className={className} />
+  )
+}
+
 export function EmailIcon({
   size = 24,
   color = 'white',
@@ -192,8 +198,16 @@ export function LoaderIcon({
   )
 }
 
+export function MoonIcon({ size = 24, color = 'white', className }: IconProps) {
+  return <Feather name="moon" size={size} color={color} className={className} />
+}
+
 export function PlusIcon({ size = 24, color = 'white', className }: IconProps) {
   return <Feather name="plus" size={size} color={color} className={className} />
+}
+
+export function SunIcon({ size = 24, color = 'white', className }: IconProps) {
+  return <Feather name="sun" size={size} color={color} className={className} />
 }
 
 export function TrashIcon({

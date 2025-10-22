@@ -10,9 +10,10 @@ import {
 } from 'react-native'
 
 import { CameraIcon, ImageIcon, TrashIcon } from '@/components/icons'
-import { Text } from '@/components/ui'
 import { useTheme } from '@/contexts/theme-context'
 import { ThemeColors } from '@/types/ui'
+
+import Text from './text'
 
 interface ImagePickerProps {
   label?: string

@@ -44,9 +44,13 @@ export const newComplaintSchema = z.object({
       message: 'Insira a rua'
     }),
   reference: z.string().optional(),
-  image: z.custom<File>(file => file instanceof File, {
-    message: 'A imagem é obrigatória'
-  })
+  image: z
+    .string({
+      required_error: 'A imagem é obrigatória'
+    })
+    .min(1, {
+      message: 'A imagem é obrigatória'
+    })
 })
 
 export type NewComplaintFormValues = z.infer<typeof newComplaintSchema>

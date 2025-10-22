@@ -10,7 +10,7 @@ import {
 } from 'react-native'
 
 import { NewComplaintHeader } from '@/components/app/_screens/new-complaint'
-import { Button, Input, Textarea } from '@/components/ui'
+import { Button, ImagePicker, Input, Textarea } from '@/components/ui'
 import { useTheme } from '@/contexts/theme-context'
 import { formatZipCode } from '@/functions/complaints'
 import { NewComplaintFormValues, newComplaintSchema } from '@/schemas/complaint'
@@ -142,6 +142,19 @@ export default function NewComplaintModal() {
           )}
         />
 
+        <Controller
+          control={control}
+          name="image"
+          render={({ field: { onChange, value } }) => (
+            <ImagePicker
+              label="Imagem"
+              errorMessage={errors.image?.message}
+              value={value}
+              onChange={onChange}
+            />
+          )}
+        />
+
         <Button onPress={handleSubmit(onSubmit)} style={styles.button}>
           Enviar
         </Button>
@@ -159,12 +172,12 @@ const createStyles = (colors: ThemeColors) =>
       paddingTop: 24
     },
     scrollView: {
-      flex: 1,
-      paddingBottom: 48
+      flex: 1
     },
     scrollViewContent: {
       flexGrow: 1,
-      gap: 12
+      gap: 12,
+      paddingBottom: 48
     },
     button: {
       marginTop: 12

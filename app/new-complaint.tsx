@@ -1,4 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useRouter } from 'expo-router'
 import { useMemo } from 'react'
 import { Controller, useForm } from 'react-hook-form'
@@ -11,13 +12,18 @@ import {
 
 import { NewComplaintHeader } from '@/components/app/_screens/new-complaint'
 import { Button, ImagePicker, Input, Textarea } from '@/components/ui'
+import { COMPLAINTS_QUERY_KEY } from '@/constants/query-keys'
 import { useTheme } from '@/contexts/theme-context'
-import { formatZipCode } from '@/functions/complaints'
+import { formatZipCode, generateFormData } from '@/functions/complaints'
+import { handleMutationError } from '@/functions/error'
+import { showSuccessToast } from '@/functions/toast'
 import { NewComplaintFormValues, newComplaintSchema } from '@/schemas/complaint'
+import { createComplaint } from '@/services/complaint'
 import { ThemeColors } from '@/types/ui'
 
 export default function NewComplaintModal() {
   const router = useRouter()
+  const queryClient = useQueryClient()
 
   const { colors } = useTheme()
   const styles = useMemo(() => createStyles(colors), [colors])
@@ -35,15 +41,33 @@ export default function NewComplaintModal() {
     }
   })
 
-  const { control, formState, handleSubmit } = form
+  const { control, formState, handleSubmit, reset } = form
   const errors = formState.errors
 
   const handleClose = () => {
+    reset()
     router.back()
   }
 
+  const { mutate, isPending } = useMutation({
+    mutationFn: async (data: NewComplaintFormValues) => {
+      const formData = generateFormData(data)
+      await createComplaint(formData)
+    },
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: [COMPLAINTS_QUERY_KEY]
+      })
+      handleClose()
+      showSuccessToast('Sucesso!', 'Reclamação registrada com sucesso')
+    },
+    onError: error => {
+      handleMutationError(error, 'Erro inesperado ao registrar reclamação')
+    }
+  })
+
   const onSubmit = (data: NewComplaintFormValues) => {
-    console.log(data)
+    mutate(data)
   }
 
   return (
@@ -156,8 +180,12 @@ export default function NewComplaintModal() {
           )}
         />
 
-        <Button onPress={handleSubmit(onSubmit)} style={styles.button}>
-          Enviar
+        <Button
+          disabled={isPending}
+          loading={isPending}
+          style={styles.button}
+          onPress={handleSubmit(onSubmit)}>
+          {isPending ? 'Enviando...' : 'Enviar'}
         </Button>
       </ScrollView>
     </KeyboardAvoidingView>

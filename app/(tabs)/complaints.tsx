@@ -4,6 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 
 import { ComplaintsHeader } from '@/components/app/_screens/complaints'
 import ComplaintsContainer from '@/components/app/complaints-container'
+import NewComplaintButton from '@/components/app/new-complaint-button'
 import UnauthenticatedContainer from '@/components/app/unauthenticated-container'
 import { RefreshControl } from '@/components/ui'
 import { useAuth } from '@/contexts/auth-context'
@@ -51,6 +52,8 @@ export default function ComplaintsScreen() {
         style={styles.container}>
         {renderContent()}
       </ScrollView>
+
+      <NewComplaintButton />
     </SafeAreaView>
   )
 }

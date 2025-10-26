@@ -1,15 +1,21 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { Stack } from 'expo-router'
-import { StatusBar } from 'expo-status-bar'
+import { StatusBar as ExpoStatusBar } from 'expo-status-bar'
 import Toast from 'react-native-toast-message'
 
 import { CUSTOM_TOAST_CONFIG } from '@/components/custom-toast'
 import { AuthProvider } from '@/contexts/auth-context'
-import { ThemeProvider } from '@/contexts/theme-context'
+import { ThemeProvider, useTheme } from '@/contexts/theme-context'
 import 'react-native-reanimated'
 
 export const unstable_settings = {
   anchor: '(tabs)'
+}
+
+function StatusBar() {
+  const { isDark } = useTheme()
+
+  return <ExpoStatusBar style={isDark ? 'light' : 'dark'} />
 }
 
 export default function RootLayout() {
@@ -36,7 +42,7 @@ export default function RootLayout() {
               }}
             />
           </Stack>
-          <StatusBar style="auto" />
+          <StatusBar />
           <Toast
             autoHide={true}
             position="top"

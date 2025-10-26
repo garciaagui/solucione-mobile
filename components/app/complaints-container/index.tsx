@@ -4,21 +4,26 @@ import { Complaint } from '@/types/complaint'
 
 import ComplaintCard from './complaint-card'
 import ComplaintCardSkeleton from './complaint-card-skeleton'
-import ComplaintsEmptyState from './complaints-empty-state'
+import ComplaintsEmptyContainer from './complaints-empty-container'
 
 interface Props {
+  emptyMessage: string
   isLoading: boolean
   complaints?: Complaint[]
 }
 
-export default function ComplaintsContainer({ isLoading, complaints }: Props) {
+export default function ComplaintsContainer({
+  emptyMessage,
+  isLoading,
+  complaints
+}: Props) {
   const renderContent = () => {
     if (isLoading) {
       return [1, 2, 3, 4].map(item => <ComplaintCardSkeleton key={item} />)
     }
 
     if (!complaints || complaints.length === 0) {
-      return <ComplaintsEmptyState />
+      return <ComplaintsEmptyContainer description={emptyMessage} />
     }
 
     return complaints.map(complaint => (

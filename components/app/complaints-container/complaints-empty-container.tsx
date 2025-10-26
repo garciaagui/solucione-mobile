@@ -6,7 +6,11 @@ import { Text } from '@/components/ui'
 import { useTheme } from '@/contexts/theme-context'
 import { ThemeColors } from '@/types/ui'
 
-export default function ComplaintsEmptyState() {
+interface Props {
+  description: string
+}
+
+export default function ComplaintsEmptyContainer({ description }: Props) {
   const { colors } = useTheme()
   const styles = useMemo(() => createStyles(colors), [colors])
 
@@ -25,8 +29,7 @@ export default function ComplaintsEmptyState() {
           Nenhuma reclamação encontrada
         </Text>
         <Text size="sm" variant="secondary" style={styles.description}>
-          Ainda não há reclamações para exibir. Quando houver novas reclamações,
-          elas aparecerão aqui.
+          {description}
         </Text>
       </View>
     </View>

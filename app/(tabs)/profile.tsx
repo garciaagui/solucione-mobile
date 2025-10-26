@@ -21,7 +21,9 @@ export default function ProfileScreen() {
 
   const renderContent = () => {
     if (!user) {
-      return <UnauthenticatedContainer />
+      return (
+        <UnauthenticatedContainer description="Faça login para acessar o seu perfil." />
+      )
     }
 
     return (

@@ -7,7 +7,13 @@ import { Button, Text } from '@/components/ui'
 import { useTheme } from '@/contexts/theme-context'
 import { ThemeColors } from '@/types/ui'
 
-export default function UnauthenticatedContainer() {
+interface Props {
+  description?: string
+}
+
+export default function UnauthenticatedContainer({
+  description = 'Faça login para continuar.'
+}: Props) {
   const router = useRouter()
 
   const { colors } = useTheme()
@@ -29,7 +35,7 @@ export default function UnauthenticatedContainer() {
             Você não está autenticado
           </Text>
           <Text size="sm" variant="secondary" style={styles.description}>
-            Faça login para continuar.
+            {description}
           </Text>
         </View>
 

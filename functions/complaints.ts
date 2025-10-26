@@ -27,8 +27,8 @@ export const generateFormData = (data: NewComplaintFormValues): FormData => {
     } as any)
   }
 
-  if (data.reference) {
-    formData.set('reference', data.reference)
+  if (data.addressReference) {
+    formData.set('addressReference', data.addressReference)
   }
 
   return formData

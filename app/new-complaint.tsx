@@ -34,7 +34,7 @@ export default function NewComplaintModal() {
       title: '',
       description: '',
       neighborhood: '',
-      reference: '',
+      addressReference: '',
       street: '',
       zipCode: '',
       image: undefined

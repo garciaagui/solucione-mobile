@@ -43,7 +43,7 @@ export const newComplaintSchema = z.object({
     .min(1, {
       message: 'Insira a rua'
     }),
-  reference: z.string().optional(),
+  addressReference: z.string().optional(),
   image: z
     .string({
       required_error: 'A imagem é obrigatória'

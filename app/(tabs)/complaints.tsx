@@ -3,13 +3,17 @@ import { ScrollView, StyleSheet, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
 import { ComplaintsHeader } from '@/components/app/_screens/complaints'
+import ComplaintsContainer from '@/components/app/complaints-container'
 import UnauthenticatedContainer from '@/components/app/unauthenticated-container'
+import { RefreshControl } from '@/components/ui'
 import { useAuth } from '@/contexts/auth-context'
 import { useTheme } from '@/contexts/theme-context'
+import { useUserComplaints } from '@/hooks/use-user-complaints'
 import { ThemeColors } from '@/types/ui'
 
 export default function ComplaintsScreen() {
   const { user } = useAuth()
+  const { data, isLoading, refetch } = useUserComplaints(user?.id)
 
   const { colors } = useTheme()
   const styles = useMemo(() => createStyles(colors), [colors])
@@ -26,6 +30,12 @@ export default function ComplaintsScreen() {
     return (
       <>
         <ComplaintsHeader userRole={user.role} />
+        <ComplaintsContainer
+          emptyMessage="Ainda não há reclamações para exibir. Quando houver novas reclamações,
+          elas aparecerão aqui."
+          isLoading={isLoading}
+          complaints={data}
+        />
       </>
     )
   }
@@ -35,6 +45,9 @@ export default function ComplaintsScreen() {
       <ScrollView
         keyboardShouldPersistTaps="handled"
         showsVerticalScrollIndicator={false}
+        refreshControl={
+          <RefreshControl isLoading={isLoading} handleRefetch={refetch} />
+        }
         style={styles.container}>
         {renderContent()}
       </ScrollView>

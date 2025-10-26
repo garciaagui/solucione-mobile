@@ -6,7 +6,7 @@ import { Text } from '@/components/ui'
 import { useTheme } from '@/contexts/theme-context'
 import { ThemeColors } from '@/types/ui'
 
-export default function ComplaintsEmptyState() {
+export default function ComplaintsEmptyContainer() {
   const { colors } = useTheme()
   const styles = useMemo(() => createStyles(colors), [colors])
 

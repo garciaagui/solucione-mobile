@@ -168,6 +168,22 @@ export default function NewComplaintModal() {
 
         <Controller
           control={control}
+          name="addressReference"
+          render={({ field: { onChange, value } }) => (
+            <Input
+              label="Referência (opcional)"
+              variant="text"
+              errorMessage={errors.addressReference?.message}
+              autoCapitalize="none"
+              placeholder="Ex: Na praça em frente ao mercado"
+              value={value}
+              onChangeText={onChange}
+            />
+          )}
+        />
+
+        <Controller
+          control={control}
           name="image"
           render={({ field: { onChange, value } }) => (
             <ImagePicker

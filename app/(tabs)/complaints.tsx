@@ -2,8 +2,8 @@ import { useMemo } from 'react'
 import { ScrollView, StyleSheet, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
+import { ComplaintsHeader } from '@/components/app/_screens/complaints'
 import UnauthenticatedContainer from '@/components/app/unauthenticated-container'
-import { Text } from '@/components/ui'
 import { useAuth } from '@/contexts/auth-context'
 import { useTheme } from '@/contexts/theme-context'
 import { ThemeColors } from '@/types/ui'
@@ -25,9 +25,7 @@ export default function ComplaintsScreen() {
 
     return (
       <>
-        <Text size="xl" weight="bold" variant="primary">
-          Reclamações
-        </Text>
+        <ComplaintsHeader userRole={user.role} />
       </>
     )
   }

@@ -26,7 +26,12 @@ export default function HomeScreen() {
         }
         style={styles.container}>
         <HomeHeader />
-        <ComplaintsContainer isLoading={isLoading} complaints={data} />
+        <ComplaintsContainer
+          emptyMessage="Ainda não há reclamações para exibir. Quando houver novas reclamações,
+          elas aparecerão aqui."
+          isLoading={isLoading}
+          complaints={data}
+        />
       </ScrollView>
 
       <NewComplaintButton />

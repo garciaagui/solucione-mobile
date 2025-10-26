@@ -18,7 +18,14 @@ export const generateFormData = (data: NewComplaintFormValues): FormData => {
   formData.set('street', data.street)
   formData.set('neighborhood', data.neighborhood)
   formData.set('zipCode', data.zipCode)
-  formData.set('image', data.image)
+
+  if (data.image) {
+    formData.append('image', {
+      uri: data.image,
+      type: 'image/jpeg',
+      name: 'image.jpg'
+    } as any)
+  }
 
   if (data.reference) {
     formData.set('reference', data.reference)

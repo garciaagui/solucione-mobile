@@ -11,6 +11,12 @@ import { useAuth } from '@/contexts/auth-context'
 import { useTheme } from '@/contexts/theme-context'
 import { useUserComplaints } from '@/hooks/use-user-complaints'
 import { ThemeColors } from '@/types/ui'
+import { UserRole } from '@/types/user'
+
+const generateEmptyMessage = (role: UserRole) => {
+  if (role === 'user') return 'Você ainda não registrou nenhuma reclamação.'
+  else return 'Você ainda não atualizou nenhuma reclamação.'
+}
 
 export default function ComplaintsScreen() {
   const { user } = useAuth()
@@ -32,8 +38,7 @@ export default function ComplaintsScreen() {
       <>
         <ComplaintsHeader userRole={user.role} />
         <ComplaintsContainer
-          emptyMessage="Ainda não há reclamações para exibir. Quando houver novas reclamações,
-          elas aparecerão aqui."
+          emptyMessage={generateEmptyMessage(user.role)}
           isLoading={isLoading}
           complaints={data}
         />

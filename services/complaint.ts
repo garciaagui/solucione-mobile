@@ -1,4 +1,4 @@
-import { Complaint } from '@/types/complaint'
+import { Complaint, NewComplaintResponse } from '@/types/complaint'
 
 import api from './api'
 
@@ -7,7 +7,9 @@ export const getComplaints = async (): Promise<Complaint[]> => {
   return response.data
 }
 
-export const createComplaint = async (data: FormData): Promise<any> => {
-  const response = await api.post<any>('/complaints', data)
+export const createComplaint = async (
+  data: FormData
+): Promise<NewComplaintResponse> => {
+  const response = await api.post<NewComplaintResponse>('/complaints', data)
   return response.data
 }

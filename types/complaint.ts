@@ -18,3 +18,8 @@ export interface Complaint {
   user: User
   replies: Reply[]
 }
+
+export interface NewComplaintResponse {
+  message: string
+  data: Complaint
+}

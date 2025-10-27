@@ -1,6 +1,7 @@
 import { Image } from 'expo-image'
+import { useRouter } from 'expo-router'
 import { useMemo } from 'react'
-import { StyleSheet, View } from 'react-native'
+import { StyleSheet, TouchableOpacity, View } from 'react-native'
 
 import { useTheme } from '@/contexts/theme-context'
 import { Complaint } from '@/types/complaint'
@@ -14,13 +15,21 @@ interface Props {
 }
 
 export default function ComplaintCard({ complaint }: Props) {
+  const router = useRouter()
+
   const { colors } = useTheme()
   const styles = useMemo(() => createStyles(colors), [colors])
 
   const { createdAt, description, images, status, title, user } = complaint
 
+  const handleNavigateToComplaintDetails = () => {
+    router.push(`/complaint-details/${complaint.id}`)
+  }
+
   return (
-    <View style={styles.container}>
+    <TouchableOpacity
+      style={styles.container}
+      onPress={handleNavigateToComplaintDetails}>
       <CardHeader user={user} status={status} />
 
       <View style={styles.imageWrapper}>
@@ -36,7 +45,7 @@ export default function ComplaintCard({ complaint }: Props) {
         description={description}
         title={title}
       />
-    </View>
+    </TouchableOpacity>
   )
 }
 

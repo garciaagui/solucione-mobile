@@ -1,5 +1,7 @@
 import { z } from 'zod'
 
+import { isValidPassword } from '@/functions/password'
+
 export const loginSchema = z.object({
   email: z
     .string()
@@ -27,21 +29,9 @@ export const registerSchema = z
         message: 'Insira um e-mail válido'
       })
       .toLowerCase(),
-    password: z
-      .string()
-      .min(10, {
-        message: 'A senha deve ter no mínimo 10 caracteres'
-      })
-      .refine(
-        value =>
-          /[A-Z]/.test(value) && // Letra maiúscula
-          /[a-z]/.test(value) && // Letra minúscula
-          /[0-9]/.test(value) && // Número
-          /[^A-Za-z0-9]/.test(value), // Caractere especial
-        {
-          message: 'A senha inserida não atende aos requisitos'
-        }
-      ),
+    password: z.string().min(1, 'Insira sua senha').refine(isValidPassword, {
+      message: 'A senha não está de acordo com os requisitos'
+    }),
     confirmPassword: z.string({ required_error: 'Insira a senha' })
   })
   .refine(data => data.password === data.confirmPassword, {

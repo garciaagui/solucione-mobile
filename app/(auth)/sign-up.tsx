@@ -1,14 +1,17 @@
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { ScrollView, StyleSheet, View } from 'react-native'
 
+import { PasswordValidator } from '@/components/app/_screens/sign-up'
 import { Button, Input, Text } from '@/components/ui'
 import { useTheme } from '@/contexts/theme-context'
 import { RegisterFormValues, registerSchema } from '@/schemas/auth'
 import { ThemeColors } from '@/types/ui'
 
 export default function SignUpScreen() {
+  const [isPasswordFocused, setIsPasswordFocused] = useState(false)
+
   const { colors } = useTheme()
   const styles = useMemo(() => createStyles(colors), [colors])
 
@@ -88,14 +91,23 @@ export default function SignUpScreen() {
           control={control}
           name="password"
           render={({ field: { onChange, value } }) => (
-            <Input
-              variant="password"
-              label="Senha"
-              errorMessage={errors.password?.message}
-              placeholder="**********"
-              value={value}
-              onChangeText={onChange}
-            />
+            <>
+              <Input
+                variant="password"
+                label="Senha"
+                errorMessage={errors.password?.message}
+                placeholder="**********"
+                value={value}
+                onChangeText={onChange}
+                onFocus={() => setIsPasswordFocused(true)}
+                onBlur={() => setIsPasswordFocused(false)}
+              />
+              <PasswordValidator
+                password={value}
+                isFocused={isPasswordFocused}
+                hasError={!!errors.password?.message}
+              />
+            </>
           )}
         />
 

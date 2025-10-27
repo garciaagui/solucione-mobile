@@ -1,4 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useMutation } from '@tanstack/react-query'
+import { useRouter } from 'expo-router'
 import { useMemo, useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { ScrollView, StyleSheet, View } from 'react-native'
@@ -6,11 +8,16 @@ import { ScrollView, StyleSheet, View } from 'react-native'
 import { PasswordValidator } from '@/components/app/_screens/sign-up'
 import { Button, Input, Text } from '@/components/ui'
 import { useTheme } from '@/contexts/theme-context'
+import { handleMutationError } from '@/functions/error'
+import { showSuccessToast } from '@/functions/toast'
 import { RegisterFormValues, registerSchema } from '@/schemas/auth'
+import { register } from '@/services/auth'
 import { ThemeColors } from '@/types/ui'
 
 export default function SignUpScreen() {
   const [isPasswordFocused, setIsPasswordFocused] = useState(false)
+
+  const router = useRouter()
 
   const { colors } = useTheme()
   const styles = useMemo(() => createStyles(colors), [colors])
@@ -31,8 +38,24 @@ export default function SignUpScreen() {
     formState: { errors }
   } = form
 
+  const { mutate, isPending } = useMutation({
+    mutationFn: async (data: RegisterFormValues) => {
+      await register(data)
+    },
+    onSuccess: async () => {
+      router.replace('/sign-in')
+      showSuccessToast(
+        'Cadastro realizado com sucesso!',
+        'Você já pode fazer login.'
+      )
+    },
+    onError: error => {
+      handleMutationError(error, 'Erro inesperado ao fazer cadastro')
+    }
+  })
+
   const onSubmit = (data: RegisterFormValues) => {
-    console.log(data)
+    mutate(data)
   }
 
   return (
@@ -127,8 +150,8 @@ export default function SignUpScreen() {
         />
 
         <Button
-          // disabled={isLoggingIn}
-          // loading={isLoggingIn}
+          disabled={isPending}
+          loading={isPending}
           onPress={handleSubmit(onSubmit)}
           style={styles.button}>
           Concluir

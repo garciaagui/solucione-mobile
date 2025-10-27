@@ -1,13 +1,36 @@
+import { zodResolver } from '@hookform/resolvers/zod'
 import { useMemo } from 'react'
+import { Controller, useForm } from 'react-hook-form'
 import { ScrollView, StyleSheet, View } from 'react-native'
 
-import { Text } from '@/components/ui'
+import { Button, Input, Text } from '@/components/ui'
 import { useTheme } from '@/contexts/theme-context'
+import { RegisterFormValues, registerSchema } from '@/schemas/auth'
 import { ThemeColors } from '@/types/ui'
 
 export default function SignUpScreen() {
   const { colors } = useTheme()
   const styles = useMemo(() => createStyles(colors), [colors])
+
+  const form = useForm<RegisterFormValues>({
+    resolver: zodResolver(registerSchema),
+    defaultValues: {
+      name: '',
+      email: '',
+      password: '',
+      confirmPassword: ''
+    }
+  })
+
+  const {
+    control,
+    handleSubmit,
+    formState: { errors }
+  } = form
+
+  const onSubmit = (data: RegisterFormValues) => {
+    console.log(data)
+  }
 
   return (
     <ScrollView
@@ -15,15 +38,90 @@ export default function SignUpScreen() {
       showsVerticalScrollIndicator={false}
       style={styles.container}>
       <View style={styles.header}>
-        <Text size="xl" weight="semibold" variant="primary">
+        <Text
+          size="xl"
+          weight="semibold"
+          variant="primary"
+          style={styles.textAlign}>
           Cadastro
         </Text>
-        <Text size="sm" variant="secondary">
-          Preencha os campos abaixo para concluir seu cadastro na Solucione
+        <Text size="sm" variant="secondary" style={styles.textAlign}>
+          Preencha os campos abaixo e faça seu cadastro na Solucione
         </Text>
       </View>
 
-      <View style={styles.form}></View>
+      <View style={styles.form}>
+        <Controller
+          control={control}
+          name="name"
+          render={({ field: { onChange, value } }) => (
+            <Input
+              variant="text"
+              label="Nome completo"
+              errorMessage={errors.name?.message}
+              autoCapitalize="none"
+              placeholder="Ex.: Ana Silva"
+              value={value}
+              onChangeText={onChange}
+            />
+          )}
+        />
+
+        <Controller
+          control={control}
+          name="email"
+          render={({ field: { onChange, value } }) => (
+            <Input
+              variant="text"
+              label="E-mail"
+              errorMessage={errors.email?.message}
+              autoCapitalize="none"
+              placeholder="Ex.: ana@exemplo.com"
+              keyboardType="email-address"
+              value={value}
+              onChangeText={onChange}
+            />
+          )}
+        />
+
+        <Controller
+          control={control}
+          name="password"
+          render={({ field: { onChange, value } }) => (
+            <Input
+              variant="password"
+              label="Senha"
+              errorMessage={errors.password?.message}
+              placeholder="**********"
+              value={value}
+              onChangeText={onChange}
+            />
+          )}
+        />
+
+        <Controller
+          control={control}
+          name="confirmPassword"
+          render={({ field: { onChange, value } }) => (
+            <Input
+              variant="password"
+              label="Confirme sua senha"
+              errorMessage={errors.confirmPassword?.message}
+              placeholder="**********"
+              value={value}
+              onChangeText={onChange}
+            />
+          )}
+        />
+
+        <Button
+          // disabled={isLoggingIn}
+          // loading={isLoggingIn}
+          onPress={handleSubmit(onSubmit)}
+          style={styles.button}>
+          Concluir
+        </Button>
+      </View>
     </ScrollView>
   )
 }
@@ -37,7 +135,7 @@ const createStyles = (colors: ThemeColors) =>
       backgroundColor: colors.background,
       flex: 1,
       paddingHorizontal: 24,
-      paddingTop: 96
+      paddingTop: 64
     },
     form: {
       flex: 1,
@@ -46,5 +144,8 @@ const createStyles = (colors: ThemeColors) =>
     header: {
       alignItems: 'center',
       marginBottom: 24
+    },
+    textAlign: {
+      textAlign: 'center'
     }
   })

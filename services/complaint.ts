@@ -7,6 +7,11 @@ export const getComplaints = async (): Promise<Complaint[]> => {
   return response.data
 }
 
+export const getComplaintById = async (id: string): Promise<Complaint> => {
+  const response = await api.get<Complaint>(`/complaints/${id}`)
+  return response.data
+}
+
 export const getUserComplaints = async (): Promise<Complaint[]> => {
   const response = await api.get<Complaint[]>('/complaints/user')
   return response.data

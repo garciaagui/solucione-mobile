@@ -2,6 +2,11 @@
 
 Uma aplicação mobile desenvolvida com React Native e Expo para gerenciamento de reclamações e problemas urbanos. O app permite que os usuários registrem, visualizem e acompanhem reclamações sobre problemas em suas comunidades.
 
+## Repositórios complementares
+
+- Backend: https://github.com/garciaagui/solucione-backend
+- Infra: https://github.com/garciaagui/solucione-infra
+
 ## 🚀 Tecnologias
 
 - **React Native** - Framework para desenvolvimento mobile
@@ -18,12 +23,14 @@ Uma aplicação mobile desenvolvida com React Native e Expo para gerenciamento d
 ## 📱 Funcionalidades
 
 ### 🔐 Autenticação
+
 - Login com email e senha
 - Gerenciamento de sessão automático
 - Logout seguro
 - Persistência de dados do usuário
 
 ### 🏠 Tela Principal
+
 - Dashboard com lista de reclamações
 - Header personalizado com informações do usuário
 - Botão flutuante para nova reclamação
@@ -31,6 +38,7 @@ Uma aplicação mobile desenvolvida com React Native e Expo para gerenciamento d
 - Estados de loading e empty state
 
 ### 📝 Nova Reclamação
+
 - Formulário completo com validação
 - Campos: título, descrição, endereço, CEP, bairro, referência
 - Upload de imagem obrigatório
@@ -38,6 +46,7 @@ Uma aplicação mobile desenvolvida com React Native e Expo para gerenciamento d
 - Modal com animação slide-from-bottom
 
 ### 👤 Perfil
+
 - Informações do usuário
 - Avatar personalizado
 - Seletor de tema (claro/escuro/sistema)
@@ -45,6 +54,7 @@ Uma aplicação mobile desenvolvida com React Native e Expo para gerenciamento d
 - Estado para usuários não autenticados
 
 ### 🎨 Tema
+
 - Suporte a tema claro e escuro
 - Modo automático baseado no sistema
 - Persistência da preferência do usuário
@@ -134,17 +144,20 @@ solucione-mobile/
 ### Instalação
 
 1. **Clone o repositório**
+
    ```bash
    git clone <url-do-repositorio>
    cd solucione-mobile
    ```
 
 2. **Instale as dependências**
+
    ```bash
    npm install
    ```
 
 3. **Configure as variáveis de ambiente**
+
    ```bash
    # Crie um arquivo .env na raiz do projeto
    EXPO_PUBLIC_API_URL=https://sua-api-url.com
@@ -186,18 +199,21 @@ npm run build:android
 ## 📱 Funcionalidades Detalhadas
 
 ### Sistema de Autenticação
+
 - **Login**: Validação de credenciais com feedback visual
 - **Persistência**: Dados do usuário salvos localmente
 - **Auto-login**: Verificação automática de sessão
 - **Logout**: Limpeza segura de dados
 
 ### Gerenciamento de Reclamações
+
 - **Listagem**: Exibição de reclamações com cards informativos
 - **Criação**: Formulário completo com validação em tempo real
 - **Estados**: Loading, empty state e error handling
 - **Refresh**: Pull-to-refresh para atualizar dados
 
 ### Interface e UX
+
 - **Tema Adaptativo**: Suporte completo a modo claro/escuro
 - **Navegação**: Tab bar customizada com ícones
 - **Animações**: Transições suaves entre telas
@@ -205,6 +221,7 @@ npm run build:android
 - **Responsividade**: Layout adaptativo para diferentes tamanhos
 
 ### Componentes de UI
+
 - **Input**: Campo de texto com validação
 - **Button**: Botão com estados de loading
 - **Textarea**: Área de texto com contador de caracteres
@@ -215,6 +232,7 @@ npm run build:android
 ## 🔧 Configurações
 
 ### Expo Configuration
+
 - **Bundle ID**: `com.garciagui.solucionemobile`
 - **Scheme**: `solucionemobile`
 - **New Architecture**: Habilitada
@@ -222,11 +240,13 @@ npm run build:android
 - **React Compiler**: Habilitado
 
 ### TypeScript
+
 - **Strict Mode**: Habilitado
 - **Path Mapping**: `@/*` para imports absolutos
 - **Type Checking**: Configuração rigorosa
 
 ### ESLint
+
 - **Expo Config**: Configuração base do Expo
 - **Prettier**: Integração com Prettier
 - **Custom Rules**: Regras personalizadas
@@ -234,6 +254,7 @@ npm run build:android
 ## 🚀 Deploy
 
 ### Desenvolvimento
+
 ```bash
 # Iniciar em modo desenvolvimento
 npm start
@@ -243,6 +264,7 @@ npm run android  # ou npm run ios
 ```
 
 ### Produção
+
 ```bash
 # Build para produção
 npm run prebuild
@@ -257,6 +279,7 @@ npm run build:ios
 ## 📊 Estrutura de Dados
 
 ### Usuário
+
 ```typescript
 interface User {
   id: string
@@ -269,6 +292,7 @@ interface User {
 ```
 
 ### Reclamação
+
 ```typescript
 interface Complaint {
   id: string
@@ -291,6 +315,7 @@ interface Complaint {
 ## 🎨 Design System
 
 ### Cores
+
 - **Primária**: #121212 (claro) / #FFFFFF (escuro)
 - **Sucesso**: #079455 (claro) / #47CD89 (escuro)
 - **Erro**: #D92D20
@@ -298,6 +323,7 @@ interface Complaint {
 - **Info**: #007AFF (claro) / #2883DF (escuro)
 
 ### Tipografia
+
 - **Sistema**: Fontes nativas do sistema
 - **Tamanhos**: xs, sm, base, lg, xl, 2xl
 - **Pesos**: normal, medium, semibold, bold

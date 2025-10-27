@@ -1,9 +1,9 @@
-import { useRouter } from 'expo-router'
+import { Link } from 'expo-router'
 import { useMemo } from 'react'
 import { StyleSheet, View } from 'react-native'
 
 import { UserUnauthenticatedIcon } from '@/components/icons'
-import { Button, Text } from '@/components/ui'
+import { Text } from '@/components/ui'
 import { useTheme } from '@/contexts/theme-context'
 import { ThemeColors } from '@/types/ui'
 
@@ -14,8 +14,6 @@ interface Props {
 export default function UnauthenticatedContainer({
   description = 'Faça login para continuar.'
 }: Props) {
-  const router = useRouter()
-
   const { colors } = useTheme()
   const styles = useMemo(() => createStyles(colors), [colors])
 
@@ -27,19 +25,28 @@ export default function UnauthenticatedContainer({
 
       <View style={styles.content}>
         <View>
-          <Text
-            size="lg"
-            weight="semibold"
-            variant="primary"
-            style={styles.title}>
+          <Text size="xl" weight="bold" style={styles.title}>
             Você não está autenticado
           </Text>
-          <Text size="sm" variant="secondary" style={styles.description}>
+          <Text size="md" variant="secondary" style={styles.description}>
             {description}
           </Text>
         </View>
 
-        <Button onPress={() => router.push('/sign-in')}>Ir para login</Button>
+        <Text size="md">
+          Faça o{' '}
+          <Link href="/sign-in" asChild>
+            <Text size="md" weight="bold" style={styles.link}>
+              login
+            </Text>
+          </Link>{' '}
+          ou{' '}
+          <Link href="/sign-up" asChild>
+            <Text size="md" weight="bold" style={styles.link}>
+              cadastre-se
+            </Text>
+          </Link>
+        </Text>
       </View>
     </View>
   )
@@ -52,7 +59,7 @@ const createStyles = (colors: ThemeColors) =>
       justifyContent: 'center',
       gap: 16,
       paddingVertical: 24,
-      paddingHorizontal: 64
+      paddingHorizontal: 56
     },
     iconContainer: {
       alignItems: 'center',
@@ -73,5 +80,8 @@ const createStyles = (colors: ThemeColors) =>
     },
     description: {
       textAlign: 'center'
+    },
+    link: {
+      textDecorationLine: 'underline'
     }
   })

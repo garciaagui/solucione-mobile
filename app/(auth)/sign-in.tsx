@@ -1,4 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod'
+import { Link } from 'expo-router'
 import { useMemo } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { ScrollView, StyleSheet, View } from 'react-native'
@@ -89,6 +90,15 @@ export default function SignInScreen() {
           Entrar
         </Button>
       </View>
+
+      <Text style={styles.signUpText}>
+        Não tem conta?{' '}
+        <Link href="/sign-up" asChild>
+          <Text weight="bold" style={styles.link}>
+            cadastre-se
+          </Text>
+        </Link>
+      </Text>
     </ScrollView>
   )
 }
@@ -111,5 +121,12 @@ const createStyles = (colors: ThemeColors) =>
     header: {
       alignItems: 'center',
       marginBottom: 24
+    },
+    link: {
+      textDecorationLine: 'underline'
+    },
+    signUpText: {
+      textAlign: 'center',
+      marginTop: 32
     }
   })

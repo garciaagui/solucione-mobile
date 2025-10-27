@@ -18,7 +18,7 @@ interface RequirementItemProps {
 function RequirementItem({ label, isValid }: RequirementItemProps) {
   const { colors } = useTheme()
 
-  const bgColor = isValid ? colors.success : colors.error
+  const bgColor = isValid ? colors.success : colors.textError
   const animatedTextColor = useAnimatedStyle(() => {
     return {
       color: withTiming(isValid ? colors.textSecondary : colors.textError, {

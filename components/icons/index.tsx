@@ -2,6 +2,7 @@ import AntDesign from '@expo/vector-icons/AntDesign'
 import Feather from '@expo/vector-icons/Feather'
 import FontAwesome from '@expo/vector-icons/FontAwesome'
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5'
+import Ionicons from '@expo/vector-icons/Ionicons'
 import MaterialIcons from '@expo/vector-icons/MaterialIcons'
 
 import { IconProps } from '@/types/ui'
@@ -38,6 +39,21 @@ export function CheckIcon({
 }: IconProps) {
   return (
     <Feather name="check" size={size} color={color} className={className} />
+  )
+}
+
+export function ChevronBackIcon({
+  size = 24,
+  color = 'white',
+  className
+}: IconProps) {
+  return (
+    <Ionicons
+      name="chevron-back"
+      size={size}
+      color={color}
+      className={className}
+    />
   )
 }
 

@@ -7,7 +7,8 @@ import {
   ComplaintDetailsSkeleton,
   DetailsContent,
   DetailsHeader,
-  ImageContainer
+  ImageContainer,
+  RepliesContainer
 } from '@/components/app/_screens/complaint-details'
 import NewComplaintButton from '@/components/app/new-complaint-button'
 import { RefreshControl, Text } from '@/components/ui'
@@ -49,6 +50,7 @@ export default function ComplaintDetailsScreen() {
           addressReference={data.addressReference}
         />
         <ImageContainer image={data.images[0]} />
+        <RepliesContainer replies={data.replies} />
       </>
     )
   }

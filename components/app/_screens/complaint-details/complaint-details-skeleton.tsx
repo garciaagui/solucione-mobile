@@ -22,12 +22,17 @@ function HeaderSkeleton() {
 function ContentSkeleton() {
   return (
     <View style={styles.contentContainer}>
-      <View style={{ gap: 4 }}>
-        <Skeleton width={300} height={26} />
-        <Skeleton width="100%" height={66} />
+      <View style={styles.titleContainer}>
+        <Skeleton width={280} height={26} />
+        <Skeleton width={80} height={26} />
       </View>
 
-      <View style={styles.locationContainer}>
+      <View style={styles.section}>
+        <Skeleton width={100} height={24} />
+        <Skeleton width="100%" height={44} />
+      </View>
+
+      <View style={styles.section}>
         <Skeleton width={100} height={24} />
         <Skeleton width="100%" height={44} />
       </View>
@@ -39,22 +44,35 @@ function ImageSkeleton() {
   return <Skeleton width="100%" height={250} />
 }
 
+function RepliesSkeleton() {
+  return (
+    <View style={styles.repliesContainer}>
+      <Skeleton width={100} height={24} />
+      <Skeleton width="100%" height={100} />
+    </View>
+  )
+}
+
 export default function ComplaintDetailsSkeleton() {
   return (
-    <View>
+    <View style={styles.container}>
       <HeaderSkeleton />
       <ContentSkeleton />
       <ImageSkeleton />
+      <RepliesSkeleton />
     </View>
   )
 }
 
 const styles = StyleSheet.create({
+  container: {
+    gap: 16
+  },
   headerContainer: {
     alignItems: 'center',
     flexDirection: 'row',
     gap: 12,
-    paddingVertical: 16
+    paddingTop: 16
   },
   userContainer: {
     alignItems: 'center',
@@ -63,11 +81,18 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start'
   },
   contentContainer: {
-    gap: 4,
-    marginBottom: 24
+    gap: 16,
+    marginBottom: 8
   },
-  locationContainer: {
-    gap: 4,
-    marginTop: 12
+  titleContainer: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    justifyContent: 'space-between'
+  },
+  section: {
+    gap: 4
+  },
+  repliesContainer: {
+    gap: 8
   }
 })

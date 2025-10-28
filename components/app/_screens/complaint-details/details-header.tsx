@@ -1,4 +1,5 @@
-import { StyleSheet, View } from 'react-native'
+import { useRouter } from 'expo-router'
+import { StyleSheet, TouchableOpacity, View } from 'react-native'
 
 import { ChevronBackIcon } from '@/components/icons'
 import { Text, UserAvatar } from '@/components/ui'
@@ -20,12 +21,20 @@ const formatCreatedDate = (date: string) => {
 }
 
 export default function DetailsHeader({ user, createdAt }: Props) {
+  const router = useRouter()
+
   const { colors } = useTheme()
   const { avatar, name } = user
 
+  const handleGoBack = () => {
+    router.back()
+  }
+
   return (
     <View style={styles.container}>
-      <ChevronBackIcon color={colors.textPrimary} />
+      <TouchableOpacity onPress={handleGoBack}>
+        <ChevronBackIcon color={colors.textPrimary} />
+      </TouchableOpacity>
 
       <View style={styles.userContainer}>
         <UserAvatar avatarUrl={avatar} size={40} />

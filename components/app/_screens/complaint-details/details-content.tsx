@@ -1,6 +1,8 @@
 import { StyleSheet, View } from 'react-native'
 
+import StatusBadge from '@/components/app/status-badge'
 import { Text } from '@/components/ui'
+import { Status } from '@/types/shared'
 
 interface Props {
   title: string
@@ -9,6 +11,7 @@ interface Props {
   neighborhood: string
   zipCode: string
   addressReference?: string | null
+  status: Status
 }
 
 export default function DetailsContent({
@@ -17,21 +20,30 @@ export default function DetailsContent({
   street,
   neighborhood,
   zipCode,
-  addressReference
+  addressReference,
+  status
 }: Props) {
   const fullAddress = `${street}, ${neighborhood} - CEP: ${zipCode}`
 
   return (
     <View style={styles.container}>
-      <Text size="xl" weight="bold" variant="primary" style={styles.title}>
-        {title}
-      </Text>
+      <View style={styles.titleContainer}>
+        <Text size="xl" weight="bold" variant="primary" style={styles.title}>
+          {title}
+        </Text>
+        <StatusBadge status={status} />
+      </View>
 
-      <Text size="md" variant="secondary" style={styles.text}>
-        {description}
-      </Text>
+      <View>
+        <Text size="md" weight="semibold" variant="primary">
+          Descrição
+        </Text>
+        <Text size="md" variant="secondary" style={styles.text}>
+          {description}
+        </Text>
+      </View>
 
-      <View style={styles.locationContainer}>
+      <View>
         <Text size="md" weight="semibold" variant="primary">
           Localização
         </Text>
@@ -50,17 +62,21 @@ export default function DetailsContent({
 
 const styles = StyleSheet.create({
   container: {
-    gap: 4,
+    gap: 16,
     marginBottom: 8
   },
+  titleContainer: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    justifyContent: 'space-between'
+  },
   title: {
-    lineHeight: 26
+    lineHeight: 26,
+    flex: 1,
+    marginRight: 12
   },
   text: {
     lineHeight: 22
-  },
-  locationContainer: {
-    marginTop: 12
   },
   reference: {
     marginTop: 2

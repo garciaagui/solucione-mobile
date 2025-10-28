@@ -48,6 +48,7 @@ export default function ComplaintDetailsScreen() {
           neighborhood={data.neighborhood}
           zipCode={data.zipCode}
           addressReference={data.addressReference}
+          status={data.status}
         />
         <ImageContainer image={data.images[0]} />
         <RepliesContainer replies={data.replies} />

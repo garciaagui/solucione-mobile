@@ -1,3 +1,4 @@
+import DetailsContent from './details-content'
 import DetailsHeader from './details-header'
 
-export { DetailsHeader }
+export { DetailsContent, DetailsHeader }

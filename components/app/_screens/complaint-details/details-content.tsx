@@ -23,11 +23,11 @@ export default function DetailsContent({
 
   return (
     <View style={styles.container}>
-      <Text size="xl" weight="bold" variant="primary">
+      <Text size="xl" weight="bold" variant="primary" style={styles.title}>
         {title}
       </Text>
 
-      <Text size="md" variant="secondary">
+      <Text size="md" variant="secondary" style={styles.text}>
         {description}
       </Text>
 
@@ -35,7 +35,7 @@ export default function DetailsContent({
         <Text size="md" weight="semibold" variant="primary">
           Localização
         </Text>
-        <Text size="md" variant="secondary">
+        <Text size="md" variant="secondary" style={styles.text}>
           {fullAddress}
         </Text>
         {addressReference && (
@@ -52,10 +52,16 @@ const styles = StyleSheet.create({
   container: {
     gap: 4
   },
+  title: {
+    lineHeight: 26
+  },
+  text: {
+    lineHeight: 22
+  },
   locationContainer: {
     marginTop: 12
   },
   reference: {
-    marginTop: 4
+    marginTop: 2
   }
 })

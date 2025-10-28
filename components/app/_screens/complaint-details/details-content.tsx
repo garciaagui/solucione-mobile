@@ -51,7 +51,7 @@ export default function DetailsContent({
 const styles = StyleSheet.create({
   container: {
     gap: 4,
-    marginBottom: 24
+    marginBottom: 8
   },
   title: {
     lineHeight: 26

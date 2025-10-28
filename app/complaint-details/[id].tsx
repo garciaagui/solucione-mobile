@@ -59,6 +59,7 @@ export default function ComplaintDetailsScreen() {
         keyboardShouldPersistTaps="handled"
         showsVerticalScrollIndicator={false}
         style={styles.container}
+        contentContainerStyle={styles.scrollViewContent}
         refreshControl={
           <RefreshControl handleRefetch={refetch} isLoading={isLoading} />
         }>
@@ -80,6 +81,9 @@ const createStyles = (colors: ThemeColors) =>
       backgroundColor: colors.background,
       flex: 1,
       paddingHorizontal: 16
+    },
+    scrollViewContent: {
+      gap: 16
     },
     errorContainer: {
       flex: 1,

@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     gap: 12,
-    paddingVertical: 16
+    paddingTop: 16
   },
   userContainer: {
     alignItems: 'center',

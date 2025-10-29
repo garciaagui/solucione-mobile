@@ -45,8 +45,8 @@ export default function SignUpScreen() {
     onSuccess: async () => {
       router.replace('/sign-in')
       showSuccessToast(
-        'Cadastro realizado com sucesso!',
-        'Você já pode fazer login.'
+        'Sucesso!',
+        'Cadastro realizado com sucesso. Você já pode fazer login.'
       )
     },
     onError: error => {

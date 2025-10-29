@@ -29,6 +29,7 @@ function CustomToast({ type, ...props }: Props) {
         fontSize: 12,
         color: text2Color
       }}
+      text2NumberOfLines={3}
     />
   )
 }

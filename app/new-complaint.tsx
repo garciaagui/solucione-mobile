@@ -9,8 +9,10 @@ import {
   ScrollView,
   StyleSheet
 } from 'react-native'
+import Toast from 'react-native-toast-message'
 
 import { NewComplaintHeader } from '@/components/app/_screens/new-complaint'
+import { CUSTOM_TOAST_CONFIG } from '@/components/custom-toast'
 import { Button, ImagePicker, Input, Textarea } from '@/components/ui'
 import { COMPLAINTS_QUERY_KEY } from '@/constants/query-keys'
 import { useTheme } from '@/contexts/theme-context'
@@ -204,6 +206,14 @@ export default function NewComplaintModal() {
           {isPending ? 'Enviando...' : 'Enviar'}
         </Button>
       </ScrollView>
+
+      <Toast
+        autoHide={true}
+        position="top"
+        topOffset={10}
+        visibilityTime={3000}
+        config={CUSTOM_TOAST_CONFIG}
+      />
     </KeyboardAvoidingView>
   )
 }

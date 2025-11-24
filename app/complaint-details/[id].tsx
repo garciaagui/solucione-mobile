@@ -50,7 +50,11 @@ export default function ComplaintDetailsScreen() {
           status={data.status}
         />
         <ImageContainer image={data.images[0]} />
-        <RepliesContainer replies={data.replies} />
+        <RepliesContainer
+          complaintId={data.id}
+          complaintStatus={data.status}
+          replies={data.replies}
+        />
       </>
     )
   }

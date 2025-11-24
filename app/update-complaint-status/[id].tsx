@@ -28,7 +28,7 @@ export default function UpdateComplaintStatusModal() {
   const queryClient = useQueryClient()
 
   const { colors } = useTheme()
-  const { id } = useLocalSearchParams()
+  const { id } = useLocalSearchParams<{ id: string }>()
   const styles = useMemo(() => createStyles(colors), [colors])
 
   const form = useForm<NewReplyFormValues>({
@@ -49,13 +49,14 @@ export default function UpdateComplaintStatusModal() {
 
   const { mutate, isPending } = useMutation({
     mutationFn: async (data: NewReplyFormValues) => {
-      const formData = generateFormData(data)
+      const formData = generateFormData(data, id)
       await createReply(formData)
     },
     onSuccess: async () => {
       await queryClient.invalidateQueries({
-        queryKey: [COMPLAINTS_QUERY_KEY, id]
+        queryKey: [COMPLAINTS_QUERY_KEY]
       })
+
       handleClose()
       showSuccessToast(
         'Sucesso!',

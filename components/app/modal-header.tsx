@@ -5,20 +5,22 @@ import { Text } from '@/components/ui'
 import { useTheme } from '@/contexts/theme-context'
 
 interface Props {
+  title: string
+  subtitle: string
   handleClose: () => void
 }
 
-export default function NewComplaintHeader({ handleClose }: Props) {
+export default function ModalHeader({ title, subtitle, handleClose }: Props) {
   const { colors } = useTheme()
 
   return (
     <View style={styles.container}>
       <View style={styles.textContainer}>
         <Text size="lg" weight="bold" variant="primary">
-          Nova Reclamação
+          {title}
         </Text>
         <Text size="sm" variant="tertiary">
-          Preencha os campos abaixo para criar uma nova reclamação.
+          {subtitle}
         </Text>
       </View>
 

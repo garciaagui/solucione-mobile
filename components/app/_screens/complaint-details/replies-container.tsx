@@ -1,15 +1,20 @@
 import { Image } from 'expo-image'
+import { useRouter } from 'expo-router'
 import { useMemo, useState } from 'react'
 import { StyleSheet, TouchableOpacity, View } from 'react-native'
 
-import { Text, UserAvatar } from '@/components/ui'
+import { Button, Text, UserAvatar } from '@/components/ui'
+import { useAuth } from '@/contexts/auth-context'
 import { useTheme } from '@/contexts/theme-context'
 import { Reply } from '@/types/reply'
+import { Status } from '@/types/shared'
 import { ThemeColors } from '@/types/ui'
 
 import ImageModal from './image-modal'
 
 interface Props {
+  complaintId: string
+  complaintStatus: Status
   replies: Reply[]
 }
 
@@ -83,9 +88,19 @@ function ReplyCard({ reply }: { reply: Reply }) {
   )
 }
 
-export default function RepliesContainer({ replies }: Props) {
+export default function RepliesContainer({
+  complaintId,
+  complaintStatus,
+  replies
+}: Props) {
+  const { user } = useAuth()
+  const router = useRouter()
+
   const { colors } = useTheme()
   const styles = useMemo(() => createStyles(colors), [colors])
+
+  const showUpdateStatusButton =
+    user?.role === 'admin' && complaintStatus !== 'Finalizado'
 
   const renderContent = () => {
     if (!replies || replies.length === 0) {
@@ -113,6 +128,15 @@ export default function RepliesContainer({ replies }: Props) {
         Atualizações
       </Text>
       {renderContent()}
+      {showUpdateStatusButton && (
+        <Button
+          style={styles.updateStatusButton}
+          onPress={() =>
+            router.push(`/update-complaint-status/${complaintId}`)
+          }>
+          Atualizar status
+        </Button>
+      )}
     </View>
   )
 }
@@ -135,6 +159,9 @@ const createStyles = (colors: ThemeColors) =>
     },
     repliesContainer: {
       gap: 16
+    },
+    updateStatusButton: {
+      marginTop: 12
     }
   })
 

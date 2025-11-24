@@ -11,7 +11,7 @@ import {
 } from 'react-native'
 import Toast from 'react-native-toast-message'
 
-import { NewComplaintHeader } from '@/components/app/_screens/new-complaint'
+import ModalHeader from '@/components/app/modal-header'
 import { CUSTOM_TOAST_CONFIG } from '@/components/custom-toast'
 import { Button, ImagePicker, Input, Textarea } from '@/components/ui'
 import { COMPLAINTS_QUERY_KEY } from '@/constants/query-keys'
@@ -76,7 +76,11 @@ export default function NewComplaintModal() {
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       style={styles.container}>
-      <NewComplaintHeader handleClose={handleClose} />
+      <ModalHeader
+        title="Nova Reclamação"
+        subtitle="Preencha os campos abaixo para criar uma nova reclamação."
+        handleClose={handleClose}
+      />
 
       <ScrollView
         keyboardShouldPersistTaps="handled"

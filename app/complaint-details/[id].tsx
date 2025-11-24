@@ -10,7 +10,6 @@ import {
   ImageContainer,
   RepliesContainer
 } from '@/components/app/_screens/complaint-details'
-import NewComplaintButton from '@/components/app/new-complaint-button'
 import { RefreshControl, Text } from '@/components/ui'
 import { useTheme } from '@/contexts/theme-context'
 import { useComplaintDetails } from '@/hooks/use-complaint-details'
@@ -51,7 +50,11 @@ export default function ComplaintDetailsScreen() {
           status={data.status}
         />
         <ImageContainer image={data.images[0]} />
-        <RepliesContainer replies={data.replies} />
+        <RepliesContainer
+          complaintId={data.id}
+          complaintStatus={data.status}
+          replies={data.replies}
+        />
       </>
     )
   }
@@ -68,8 +71,6 @@ export default function ComplaintDetailsScreen() {
         }>
         {renderContent()}
       </ScrollView>
-
-      <NewComplaintButton />
     </SafeAreaView>
   )
 }

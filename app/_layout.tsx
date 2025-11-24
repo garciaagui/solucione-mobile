@@ -42,6 +42,13 @@ export default function RootLayout() {
                 animation: 'slide_from_bottom'
               }}
             />
+            <Stack.Screen
+              name="update-complaint-status/[id]"
+              options={{
+                presentation: 'modal',
+                animation: 'slide_from_bottom'
+              }}
+            />
           </Stack>
           <StatusBar />
           <Toast

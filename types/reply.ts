@@ -12,3 +12,8 @@ export interface Reply {
   complaintStatus: Status
   user: User
 }
+
+export interface NewReplyResponse {
+  message: string
+  data: Reply
+}
